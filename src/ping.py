@@ -26,5 +26,4 @@ def ip_Reachable(ip):
                     pass
             
 if __name__ == "__main__":
-        ip = input("Enter Your IP : ")
-        ip_Reachable(ip)
+        ip_Reachable()

@@ -1,6 +1,11 @@
 ## CHANGELOG
 
 
+* v1.6 - v1.6
+* v1.6 - Updated libs/imports.py (Updated reverse)
+* v1.6 - Added src/reverse.py (reverse ip/dns)
+* v1.6 - Initial commit (__init__.py)
+* v1.6 - Added __init.py__ (src,tools,libs/__initial__.py)
 * v1.5 - CHANGELOG to CHANGELOG.md
 * v1.5 - Imports Update(whois)
 * v1.5 - Added Whois

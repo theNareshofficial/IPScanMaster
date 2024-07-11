@@ -1,6 +1,17 @@
 ## CHANGELOG
 
 
+* v1.8 - Official Release (v1.8)
+* v1.8 - Added main.py (Official launch v1.8)
+* v1.8 - Updated setup (Banner, version)
+* v1.8 - Updated README.md (Installation, etc...)
+* v1.8 - Updated libs/imports.py (ports, banner)
+* v1.8 - Added requirements.txt (Python requirements)
+* v1.8 - Added .github/FUNDING.yml (Links)
+* v1.8 - Added assets/images (Images)
+* v1.8 - Added tools/banner.py (Banner)
+* v1.8 - Added src/ports.py (Port Scanning)
+* v1.6 - v1.6 to v1.7 directly update to version v1.8
 * v1.6 - v1.6
 * v1.6 - Updated libs/imports.py (Updated reverse)
 * v1.6 - Added src/reverse.py (reverse ip/dns)

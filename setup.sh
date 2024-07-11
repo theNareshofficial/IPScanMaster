@@ -28,7 +28,7 @@ echo """
           |  Github  : https://github.com/theNareshofficial
           |  Youtube : https://www.youtube.com/@nareshtechweb930    
 
-                            IPScanMaster : v1.7
+                            IPScanMaster : v1.8
     ...A Tool for Gathering Detailed Information about IPs and Domains...
 """
 

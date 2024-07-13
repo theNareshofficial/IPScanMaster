@@ -1,6 +1,10 @@
 ## CHANGELOG
 
 
+* v1.9 - v1.9 (Bug fixed)
+* v1.9 - Updated main.py (replace, IPchg)
+* v1.9 - Updated libs/imports.py ()
+* v1.9 - Added src/IPchg.py (IPchange)
 * v1.8 - Official Release (v1.8)
 * v1.8 - Added main.py (Official launch v1.8)
 * v1.8 - Updated setup (Banner, version)

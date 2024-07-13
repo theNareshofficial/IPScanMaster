@@ -3,14 +3,14 @@
 from libs.imports import *
 
 clrscr()
-
 banner()
 
-uIP = input("[+] Enter Your DNS or IPv4 : ")
+uIP = input("[+] Enter Your DNS or IPv4 : ").replace("https://", "").replace("http://", "")
 
 is_ip_addr(uIP)
 
 def connection():
+        global uIP
 
         try:
                 if inet_conn() == 0:
@@ -21,6 +21,7 @@ def connection():
                         ip_Reachable(ip=uIP)
                         print("\n[+]---------- Checking WAF(Web Application Firewall) ----------[+]\n")
                         check_waf(ip=uIP)
+                        uIP = ip_chg(ip=uIP)
                         print("\n[+]---------- IP Information ----------[+]")
                         ipinfo(ip=uIP)
                         print("\n[+]---------- Checking Open Port's ----------[+]\n")

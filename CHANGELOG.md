@@ -1,6 +1,14 @@
 ## CHANGELOG
 
 
+* v1.10 - Updated main.py (ip_history, color)
+* v1.10 - Updated/Added libs/imports (banner, setup, main, color, ip_history)
+* v1.10 - updated tools/banner.py (version update)
+* v1.10 - updated setup.sh (version update)
+* v1.10 - Added history (Search IP History)
+* v1.10 - Added tools/ip_history.py (IP History)
+* v1.10 - Added tools/color.py (Ansi code)
+* v1.10 - v1.10
 * v1.9 - v1.9 (Bug fixed)
 * v1.9 - Updated main.py (replace, IPchg)
 * v1.9 - Updated libs/imports.py ()

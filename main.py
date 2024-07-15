@@ -5,8 +5,9 @@ from libs.imports import *
 clrscr()
 banner()
 
-uIP = input("[+] Enter Your DNS or IPv4 : ").replace("https://", "").replace("http://", "")
 
+uIP = input(f"{GREEN}[+] Enter Your DNS or IPv4 : {CYAN}").replace("https://", "").replace("http://", "")
+ip_history(ip=uIP)
 is_ip_addr(uIP)
 
 def connection():
@@ -15,25 +16,25 @@ def connection():
         try:
                 if inet_conn() == 0:
 
-                        print("\n[+]---------- Checking Your Original IP ----------[+]\n")
+                        print(f"\n{YELLOW}[+]---------- Checking Your Original IP ----------[+]{RESET}{GREEN}\n")
                         reverseIP(ip=uIP)
-                        print("\n[+]---------- Checking Your IP Reachable ----------[+]\n")
+                        print(f"\n{YELLOW}[+]---------- Checking Your IP Reachable ----------[+]{GREEN}\n")
                         ip_Reachable(ip=uIP)
-                        print("\n[+]---------- Checking WAF(Web Application Firewall) ----------[+]\n")
+                        print(f"\n{YELLOW}[+]---------- Checking WAF(Web Application Firewall) ----------[+]{GREEN}\n")
                         check_waf(ip=uIP)
                         uIP = ip_chg(ip=uIP)
-                        print("\n[+]---------- IP Information ----------[+]")
+                        print(f"\n{YELLOW}[+]---------- IP Information ----------[{GREEN}+]")
                         ipinfo(ip=uIP)
-                        print("\n[+]---------- Checking Open Port's ----------[+]\n")
+                        print(f"\n{YELLOW}[+]---------- Checking Open Port's ----------[+]{GREEN}\n")
                         scan_ports(ip=uIP)
-                        print("\n[+]---------- IP WHOIS ----------[+]\n")
+                        print(f"\n{YELLOW}[+]---------- IP WHOIS ----------[+]{GREEN}\n")
                         check_whois(ip=uIP)
-                        print("\n[+]---------- Completed ----------[+]\n")
+                        print(f"\n{YELLOW}[+]---------- Completed ----------[+]{GREEN}\n")
                 else:
                         exit(None)
         
         except Exception as e:
-                print(f"Error : {e}")
+                print(f"{RED}Error : {e}")
 
         except KeyboardInterrupt:
                 pass

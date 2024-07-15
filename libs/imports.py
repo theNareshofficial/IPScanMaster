@@ -9,3 +9,5 @@ from src.IPchg import *
 from tools.clrscr import *
 from tools.inet import *
 from tools.banner import *
+from tools.color import *
+from tools.ip_history import *

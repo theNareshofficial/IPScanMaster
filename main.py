@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 from libs.imports import *
 
@@ -8,7 +8,7 @@ banner()
 
 uIP = input(f"{GREEN}[+] Enter Your DNS or IPv4 : {CYAN}").replace("https://", "").replace("http://", "")
 ip_history(ip=uIP)
-is_ip_addr(uIP)
+is_valid_ip_or_dns(uIP)
 
 def connection():
         global uIP

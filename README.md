@@ -2,13 +2,14 @@
             <img src="assets/logo.png" width="700px">
 </p>
 
-<h1 align="center">IPScan Master ~ v1.8</h1>
+<h1 align="center">IPScan Master ~ v1.11</h1>
 
 **IPScanMaster** is a tool designed to retrieve detailed information about IPv4 addresses and DNS names, including original DNS names, port scanning, WAF checks, IP reachability, and WHOIS information. This tool runs on Debian-based Linux OS.
 
 # Features 🎯
 
 - Check IP Reachability
+- Check IP Validate
 - Reverse Lookup for IP & DNS
 - WAF Detection
 - Port Scanning
@@ -44,6 +45,12 @@
 # Installation⤵️
 
 ```bash
+# git clone IPScanMaster
+$ git clone https://github.com/theNareshofficial/IPScanMaster.git
+
+# Change Folder IPScanMaster
+$ cd IPScanMaster
+
 # Change the permission of setup.sh file
 $ chmod +x setup.sh
 

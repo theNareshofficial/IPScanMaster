@@ -1,6 +1,15 @@
 ## CHANGELOG
 
 
+* v1.11 - v1.11
+* v1.11 - Updated main.py (is_valid_ip_or_dns(uIP))
+* v1.11 - Updated requirements.txt (ipaddress)
+* v1.11 - Updated setup.sh (version update)
+* v1.11 - Updated libs/import.py (src/api/ipinfo.py)
+* v1.11 - Updated tool/banner.py (version update)
+* v1.11 - Updated src/api/ipinfo.py (path changed)
+* v1.11 - Updated src/reverse.py (is_valid_ip_or_dns)
+* v1.11 - Removed src/ipinfo.py (path changed)
 * v1.10 - Updated main.py (ip_history, color)
 * v1.10 - Updated/Added libs/imports (banner, setup, main, color, ip_history)
 * v1.10 - updated tools/banner.py (version update)

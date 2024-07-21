@@ -34,7 +34,7 @@ def banner():
           |  {RED}Github  : https://github.com/theNareshofficial{BLUE}
           |  {RED}Youtube : https://www.youtube.com/@nareshtechweb930{BLUE}
 
-                             IPScanMaster : v1.10
+                             IPScanMaster : v1.11
       ...A Tool for Gathering Detailed Information about IPs and Domains...
 
 {RESET}"""

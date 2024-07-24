@@ -1,6 +1,7 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import requests
+from tools.color import *
 
 def get_ip_location(ip):
     try:
@@ -9,21 +10,21 @@ def get_ip_location(ip):
         data = response.json()
         return data
     except requests.RequestException as e:
-        print(f"Error fetching IP location: {e}")
+        print(f" [+] Error fetching IP location: {e}")
         return None
 
 def ipinfo(ip):
     location_info = get_ip_location(ip)
 
     if location_info:
-        print(f"\nIP Location Information:")
-        print(f"IP: {location_info.get('ip')}")
-        print(f"City: {location_info.get('city')}")
-        print(f"Region: {location_info.get('region')}")
-        print(f"Country: {location_info.get('country')}")
-        print(f"Location: {location_info.get('loc')}")
-        print(f"Organization: {location_info.get('org')}")
-        print(f"Timezone: {location_info.get('timezone')}")
+        print(f" \n {BRIGHT_MAGENTA} [+]{BRIGHT_CYAN} IP Location Information:")
+        print(f" {BRIGHT_MAGENTA} [+]{BRIGHT_CYAN} IP: {location_info.get('ip')}")
+        print(f" {BRIGHT_MAGENTA} [+]{BRIGHT_CYAN} City: {location_info.get('city')}")
+        print(f" {BRIGHT_MAGENTA} [+]{BRIGHT_CYAN} Region: {location_info.get('region')}")
+        print(f" {BRIGHT_MAGENTA} [+]{BRIGHT_CYAN} Country: {location_info.get('country')}")
+        print(f" {BRIGHT_MAGENTA} [+]{BRIGHT_CYAN} Location: {location_info.get('loc')}")
+        print(f" {BRIGHT_MAGENTA} [+]{BRIGHT_CYAN} Organization: {location_info.get('org')}")
+        print(f" {BRIGHT_MAGENTA} [+]{BRIGHT_CYAN} Timezone: {location_info.get('timezone')}")
     else:
         print("Unable to retrieve IP location.")
 

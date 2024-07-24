@@ -1,6 +1,20 @@
 ## CHANGELOG
 
 
+* v1,12
+* v1.12 - Updated setup.sh (Added cls, Updated version)
+* v1.12 - Updated requirements.txt (Added Sublist3r==1.0)
+* v1.12 - Updated README.md (Updated Sub-Domain's lister)
+* v1.12 - Updated main.py (Bug fixed, color updated)
+* v1.12 - Updated libs/imports.py (import src/sublister.py)
+* v1.12 - Updated tools/color.py (Updated Color's)
+* v1.12 - Updated tools/banner.py (Updated version and color)
+* v1.12 - Updated src/reverse.py (Bug Fixed)
+* v1.12 - Updated src/api/ipinfo.py (Updated color)
+* v1.12 - Updated src/waf.py (Bug Fixed)
+* v1.12 - Updated src/reverse.py (Bug Fixed)
+* v1.12 - Updated src/ports.py (Updated count, color)
+* v1.12 - Added src/sublister.py (Sub Domain lister)
 * v1.11 - v1.11
 * v1.11 - Updated main.py (is_valid_ip_or_dns(uIP))
 * v1.11 - Updated requirements.txt (ipaddress)

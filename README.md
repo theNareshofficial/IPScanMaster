@@ -2,9 +2,9 @@
             <img src="assets/logo.png" width="700px">
 </p>
 
-<h1 align="center">IPScan Master ~ v1.11</h1>
+<h1 align="center">IPScan Master ~ v1.12</h1>
 
-**IPScanMaster** is a tool designed to retrieve detailed information about IPv4 addresses and DNS names, including original DNS names, port scanning, WAF checks, IP reachability, and WHOIS information. This tool runs on Debian-based Linux OS.
+**IPScanMaster** is a tool designed to retrieve detailed information about IPv4 addresses and DNS names, including original DNS names, port scanning, SubDomain's, WAF checks, IP reachability, and WHOIS information. This tool runs on Debian-based Linux OS.
 
 # Features 🎯
 
@@ -13,8 +13,9 @@
 - Reverse Lookup for IP & DNS
 - WAF Detection
 - Port Scanning
+- Sub-Domains
 - IPINFO.io API Integration
-- WHOIS Command
+- WHOIS Command Info
 
 # Key Concepts 🔑
 
@@ -61,7 +62,7 @@ $ sudo ./setup.sh
 $ python main.py
 ```
 
-# Tested🧪
+# Tested OS🧪
 
 - Kali Linux
 - Ubuntu OS

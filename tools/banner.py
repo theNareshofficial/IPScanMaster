@@ -1,14 +1,9 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
-# ANSI escape codes for colors
-BOLD = '\033[1m'
-RED = '\033[31m'
-BLUE = '\033[34m'
-RESET = '\033[0m'
-GREEN = '\033[32m'
+from tools.color import *
 
 def banner():
-    __banner__ = f"""{BOLD}{GREEN}
+    __banner__ = f"""{BOLD}{BRIGHT_GREEN}
 
               .:------::.                         
            :=====-----====-:                    
@@ -30,11 +25,11 @@ def banner():
                                     :=+++++=      
                                       :===-  
 
-          |  {RED}Author  : Naresh{BLUE}
-          |  {RED}Github  : https://github.com/theNareshofficial{BLUE}
-          |  {RED}Youtube : https://www.youtube.com/@nareshtechweb930{BLUE}
+          |  {BRIGHT_RED}Author  : Naresh{BLUE}
+          |  {BRIGHT_RED}Github  : https://github.com/theNareshofficial{BLUE}
+          |  {BRIGHT_RED}Youtube : https://www.youtube.com/@nareshtechweb930{BLUE}
 
-                             IPScanMaster : v1.11
+                             IPScanMaster : v1.12
       ...A Tool for Gathering Detailed Information about IPs and Domains...
 
 {RESET}"""

@@ -1,7 +1,7 @@
 ## CHANGELOG
 
 
-* v1,12
+* v1.12
 * v1.12 - Updated setup.sh (Added cls, Updated version)
 * v1.12 - Updated requirements.txt (Added Sublist3r==1.0)
 * v1.12 - Updated README.md (Updated Sub-Domain's lister)

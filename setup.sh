@@ -28,11 +28,12 @@ echo """
           |  Github  : https://github.com/theNareshofficial
           |  Youtube : https://www.youtube.com/@nareshtechweb930    
 
-                            IPScanMaster : v1.11
+                            IPScanMaster : v1.12
     ...A Tool for Gathering Detailed Information about IPs and Domains...
 """
 
 }
+cls
 bannner
 
 # Function to check if a command exists

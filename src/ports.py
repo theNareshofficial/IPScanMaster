@@ -1,8 +1,9 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import socket
-import sys
 import time
+import sys
+from tools.color import *
 
 ports = {
     20: "FTP-CLI",
@@ -95,28 +96,38 @@ ports = {
 }
 
 def scan_ports(ip, verbose=True):
-    print(f"Scanning common and advanced ports on {ip}...")
+    
+    try:
+        count = 0
+        open_ports = {}
 
-    open_ports = {}
-    for port, service in ports.items():
-        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        sock.settimeout(0.50)
-        result = sock.connect_ex((ip, port))
-        if verbose:
-            print(f"\rChecking port's -> {port} ...", end="")
-        if result == 0:
-            open_ports[port] = service
-        sock.close()
-        sys.stdout.flush()
-        time.sleep(0.01)
+        for port, service in ports.items():
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            sock.settimeout(0.50)
+            result = sock.connect_ex((ip, port))
+            if verbose:
+                print(f"\r{BRIGHT_RED} [!] Checking port {port} ({service})", end="" + "\n")
+            if result == 0:
+                open_ports[port] = service
+                count += 1
+            sock.close()
+            sys.stdout.flush()
+            time.sleep(0.01)
     
-    if open_ports:
-        print("\nScan complete. Open ports found:")
-        for port, service in open_ports.items():
-            print(f"Port {port} ({service})")
-    else:
-        print("\nScan complete. No open ports found among the common and advanced ports.")
+        if open_ports:
+            output = ""
+            for port, service in open_ports.items():
+                output += f"Port {port} ({service})\n"
+                print(f"{BRIGHT_MAGENTA} [+]{BRIGHT_CYAN} Port {port} ({service})")
+
+            print(f" \n\t{BRIGHT_MAGENTA} [+] {BRIGHT_CYAN} {count} Open Ports Found...")
+        else:
+            print(f"{BRIGHT_MAGENTA} [+] {BRIGHT_CYAN} No open ports found among the common and advanced ports.")
     
+    except Exception as e:
+        print(e)
+    except KeyboardInterrupt:
+        pass
     return open_ports
 
 if __name__ == "__main__":

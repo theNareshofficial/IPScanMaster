@@ -33,8 +33,10 @@ echo """
 """
 
 }
-cls
+clear
 bannner
+
+echo Hello, $(whoami)
 
 # Function to check if a command exists
 command_exists() {
@@ -45,7 +47,7 @@ check_root() {
     if sudo -n true 2>/dev/null; then
         return 0
     else
-        echo "Please run this script with sudo!!!"
+        echo "[+] Please run this script with sudo!!!"
         return 1
     fi
 }

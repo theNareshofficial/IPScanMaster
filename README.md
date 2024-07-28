@@ -31,6 +31,9 @@
 ## Port Scanning
 - Scans mentioned open ports, covering 85 advanced common ports to identify open ports quickly.
 
+## SubDomain Lister
+- This function identifies and lists all subdomains associated with the given domain. This can help in uncovering additional points of entry or services running under the main domain.
+
 ## IPINFO.io API
 - Retrieves detailed information such as IP, city, region, country, location, organization, and timezone.
 

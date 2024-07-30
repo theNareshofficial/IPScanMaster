@@ -1,7 +1,9 @@
 ## CHANGELOG
 
 
-* v1.12a - Updated setup.sh (Bug fixed.)
+* v1.12b - Updated main.py (Bug fixed)
+* v1.12b - Updated README.md (SubDomain lister)
+* v1.12a - Updated setup.sh (Bug fixed)
 * v1.12
 * v1.12 - Updated setup.sh (Added cls, Updated version)
 * v1.12 - Updated requirements.txt (Added Sublist3r==1.0)

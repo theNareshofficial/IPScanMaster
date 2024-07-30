@@ -5,7 +5,7 @@ from libs import *
 clrscr()
 banner()
 
-uIP = input(f"{BRIGHT_GREEN}[+] Enter Your DNS or IPv4 : {BRIGHT_CYAN}").replace("https://", "").replace("http://", "")
+uIP = input(f"{BRIGHT_GREEN}[+] Enter Your DNS or IPv4 : {BRIGHT_CYAN}").replace("https://", "").replace("http://", "").rstrip("/")
 
 ip_history(ip=uIP)      # It's store in your history file
 validate_ip_dns(uIP)

@@ -34,9 +34,8 @@ def connection():
                         print(f"\n{BRIGHT_MAGENTA}[+]---------- Completed ----------[+]{BRIGHT_GREEN}\n")
                 else:
                         exit(None)
-        
         except Exception as conn_error:
-                print(f"{RED}Error : {conn_error}")
+                print(f"{RED}Conn_Error : {conn_error}, Path ={__file__}")
         except KeyboardInterrupt:
                 pass
 

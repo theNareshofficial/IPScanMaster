@@ -1,6 +1,10 @@
 ## CHANGELOG
 
-
+* v1.14
+* v1.13 - Updated libs/imports.py (Bug fixed)
+* v1.13 - Updated src/ping.py (Bug fixed)
+* v1.13 - Updated src/ports.py (port fomate fixed)
+* v1.13 - Updated tools/ip_history.py (inital commit)
 * v1.12b - Updated main.py (Bug fixed)
 * v1.12b - Updated README.md (SubDomain lister)
 * v1.12a - Updated setup.sh (Bug fixed)

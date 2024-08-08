@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import datetime
 
@@ -9,6 +9,7 @@ def ip_history(ip):
                  dt = datetime.datetime.strptime(date_string, "%d-%m-%Y : %H:%M:%S")
                  with open("history", "a") as file:
                        file.write(f"{ip} {dt}\n")
+                       print("[+] IP Saved in history file...")
                        file.close()
             except FileNotFoundError:
                     print("File Not Found!!!")

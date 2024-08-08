@@ -106,7 +106,7 @@ def scan_ports(ip, verbose=True):
             sock.settimeout(0.50)
             result = sock.connect_ex((ip, port))
             if verbose:
-                print(f"\r{BRIGHT_RED} [!] Checking port {port} ({service})", end="" + "\n")
+                print(f"\r{BRIGHT_RED} [!] Checking port => {port} ...", end=" ")
             if result == 0:
                 open_ports[port] = service
                 count += 1

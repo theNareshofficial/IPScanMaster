@@ -17,13 +17,13 @@ def ip_Reachable(ip):
                         result = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
                         if result.returncode == 0:
-                                    print(f"{MAGENTA} [+] {CYAN}{ip} is Reachable...")
+                                    print(f"{BRIGHT_MAGENTA} [+] {BRIGHT_CYAN}{ip} is Reachable...")
                                     return 0
                         else:
-                                    print(f"{MAGENTA} [!] {RED}{ip} is not Reachable!!!")
+                                    print(f"{BRIGHT_MAGENTA} [!] {BRIGHT_RED}{ip} is not Reachable!!!")
                                     exit()
             except Exception as ping_error:
-                    print(f"{MAGENTA} [!] {RED}{ping_error}, path={__path__}")
+                    print(f"{BRIGHT_MAGENTA} [!] {BRIGHT_RED}{ping_error}, path={__path__}")
             except KeyboardInterrupt:
                     pass
             

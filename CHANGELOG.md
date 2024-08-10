@@ -1,6 +1,19 @@
 ## CHANGELOG
 
-* v1.14
+* v2.01
+* v2.01 - Updated main.py (Arguments Updated)
+* v2.01 - Updated README.md (README file)
+* v2.01 - Updated libs/imports.py (config updated)
+* v2.01 - Updated src/waf.py (Initial Updated)
+* v2.01 - Updated src/ports.py (Bug fixed)
+* v2.01 - Updated src/ping.py (Color updated)
+* v2.01 - Updated tools/banner.py (config Updated)
+* v2.01 - Added tools/core/config.py (Config file)
+* v2.01 - Added Injection/name.txt (name lister)
+* v2.01 - Added Injection/dirsearch.txt (directory lister)
+* v2.01 - Added Injection/2023-200_most_passwords.txt (2023-password's)
+* v2.01 - Added Injection/top-usernames-shortlists.txt (top username)
+* v1.13
 * v1.13 - Updated libs/imports.py (Bug fixed)
 * v1.13 - Updated src/ping.py (Bug fixed)
 * v1.13 - Updated src/ports.py (port fomate fixed)

@@ -1,18 +1,22 @@
 #!/usr/bin/env python3
 
 from tools.color import *
+from tools.core import config
 
-def banner():
-    __banner__ = f"""{BOLD}{BRIGHT_GREEN}
+class Info:
+    @classmethod
+    def banner(cls):
+        __banner__ = f"""{BOLD}{BRIGHT_GREEN}
 
               .:------::.                         
            :=====-----====-:                    
-         :===:.        .:-===.                    
-        ===:              .-==:                   
-      :==:                   ===                  
-      -==.                    -==.                 
-       ===.   IPScan         -==:                  
-      :==:      Master🔍      ===                  
+         :===:.         .:-===.                    
+        ===:               .-==:                   
+      -==.                   -==.                 
+      :==:    IPScan          -==. 
+      -==.        Master🔍     ===                  
+       ===.                    -==:                  
+      :==:                     ===                  
        ===                  :==-                  
        .===.               :==-                   
         .===-.          .:====                    
@@ -25,14 +29,15 @@ def banner():
                                     :=+++++=      
                                       :===-  
 
-          |  {BRIGHT_RED}Author  : Naresh{BLUE}
-          |  {BRIGHT_RED}Github  : https://github.com/theNareshofficial{BLUE}
-          |  {BRIGHT_RED}Youtube : https://www.youtube.com/@nareshtechweb930{BLUE}
+            |  {BRIGHT_RED}{config.Author}{BLUE}
+            |  {BRIGHT_RED}{config.Github}{BLUE}
+            |  {BRIGHT_RED}{config.Youtube}{BLUE}
 
-                             IPScanMaster : v1.12
-      ...A Tool for Gathering Detailed Information about IPs and Domains...
+                                   {config.version}
+            {config.description}
 
 {RESET}"""
-    print(__banner__)
+        print(__banner__)
 
-banner()
+# Call the class method to print the banner
+Info.banner()

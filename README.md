@@ -10,7 +10,7 @@
 
 - Check IP Reachability
 - Check IP Validate
-- Reverse Lookup for IP & DNS
+- Reverse Lookup for Original IP & DNS
 - WAF Detection
 - Port Scanning
 - Sub-Domains
@@ -48,22 +48,73 @@
 
 # Installation⤵️
 
+### git clone IPScanMaster
 ```bash
-# git clone IPScanMaster
 $ git clone https://github.com/theNareshofficial/IPScanMaster.git
-
-# Change Folder IPScanMaster
-$ cd IPScanMaster
-
-# Change the permission of setup.sh file
-$ chmod +x setup.sh
-
-# Run setup.sh file
-$ sudo ./setup.sh
-
-# Run main.py file
-$ python main.py
 ```
+
+### Change Folder IPScanMaster
+```bash
+$ cd IPScanMaster
+```
+
+### Change the permission of setup.sh file
+```bash
+$ chmod +x setup.sh
+```
+
+### Run setup.sh file
+```bash
+$ sudo ./setup.sh
+```
+
+### Run main.py file
+```bash
+$ python3 main.py -d example.com or 8.8.8.8
+```
+
+# Help Option's👇
+
+### Show help
+```bash
+python3 main.py -h
+```
+
+### DNS & IPv4, It'll show all the option's
+```bash
+python3 main.py -d example.com or 8.8.8.8
+```
+
+### Show Real Address
+```bash
+python3 main.py -r exapmle.com
+```
+
+### Show SubDomains
+```bash
+python3 main.py -s example.com
+```
+
+### Show All Open Port's
+```bash
+python3 main.py -p example.com
+```
+
+### Web Application Firewall(WAF) Check
+```bash
+python3 main.py -w example.com
+```
+
+### IP Information
+```bash
+python3 main.py -i https://example.com/
+```
+
+### Show version
+```bash
+python3 main.py -v
+```
+
 
 # Tested OS🧪
 

@@ -116,6 +116,7 @@ def scan_ports(ip, verbose=True):
     
         if open_ports:
             output = ""
+            print("\n")
             for port, service in open_ports.items():
                 output += f"Port {port} ({service})\n"
                 print(f"{BRIGHT_MAGENTA} [+]{BRIGHT_CYAN} Port {port} ({service})")

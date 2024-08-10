@@ -17,7 +17,7 @@ def check_waf(ip):
                     if results:
                                 print(f"{BRIGHT_MAGENTA}[+] {BRIGHT_CYAN}WAF is detected {ip}")
                                 for waf_name in results:
-                                        print(f" {BRIGHT_MAGENTA}- {BRIGHT_CYAN}{waf_name}")
+                                        print(f"\t {BRIGHT_MAGENTA}- {BRIGHT_CYAN}{waf_name}")
                     else:
                                 print(f" {BRIGHT_MAGENTA} [+] {BRIGHT_RED} No WAF is detected!!!")
             except Exception as waf_error:

@@ -1,5 +1,9 @@
 ## CHANGELOG
 
+* v2.02
+* v2.02 - Updated README.md (Version Updated')
+* v2.02 - Updated README.md (Access Anywhere 'ipscanmaster')
+* v2.02 - Updated setup.sh (Updated global_access)
 * v2.01
 * v2.01 - Updated main.py (Arguments Updated)
 * v2.01 - Updated README.md (README file)

@@ -1,7 +1,8 @@
 ## CHANGELOG
 
 * v2.02
-* v2.02 - Updated README.md (Version Updated')
+* v2.02 - Updated assets/image (Banner Image)
+* v2.02 - Updated tool/core/config.py (Version Updated)
 * v2.02 - Updated README.md (Access Anywhere 'ipscanmaster')
 * v2.02 - Updated setup.sh (Updated global_access)
 * v2.01

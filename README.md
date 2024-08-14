@@ -1,8 +1,8 @@
 <p align="center">
-            <img src="assets/logo.png" width="700px">
+            <img src="assets/image.png" width="700px">
 </p>
 
-<h1 align="center">IPScan Master ~ v1.12</h1>
+<h1 align="center">IPScan Master ~ v2.02</h1>
 
 **IPScanMaster** is a tool designed to retrieve detailed information about IPv4 addresses and DNS names, including original DNS names, port scanning, SubDomain's, WAF checks, IP reachability, and WHOIS information. This tool runs on Debian-based Linux OS.
 
@@ -16,6 +16,7 @@
 - Sub-Domains
 - IPINFO.io API Integration
 - WHOIS Command Info
+- Access Anywhere in your linux system 'ipscanmaster'
 
 # Key Concepts 🔑
 
@@ -68,51 +69,56 @@ $ chmod +x setup.sh
 $ sudo ./setup.sh
 ```
 
+### You can Access Anywhere in your linux system 'ipscanmaster'
+```bash
+ipscanmaster --help
+```
+
 ### Run main.py file
 ```bash
-$ python3 main.py -d example.com or 8.8.8.8
+$ ipscanmaster -d example.com or 8.8.8.8
 ```
 
 # Help Option's👇
 
 ### Show help
 ```bash
-python3 main.py -h
+ipscanmaster -h
 ```
 
 ### DNS & IPv4, It'll show all the option's
 ```bash
-python3 main.py -d example.com or 8.8.8.8
+ipscanmaster -d example.com or 8.8.8.8
 ```
 
 ### Show Real Address
 ```bash
-python3 main.py -r exapmle.com
+ipscanmaster -r exapmle.com
 ```
 
 ### Show SubDomains
 ```bash
-python3 main.py -s example.com
+ipscanmaster -s example.com
 ```
 
 ### Show All Open Port's
 ```bash
-python3 main.py -p example.com
+ipscanmaster -p example.com
 ```
 
 ### Web Application Firewall(WAF) Check
 ```bash
-python3 main.py -w example.com
+ipscanmaster -w example.com
 ```
 
 ### IP Information
 ```bash
-python3 main.py -i https://example.com/
+ipscanmaster -i https://example.com/
 ```
 
 ### Show version
 ```bash
-python3 main.py -v
+ipscanmaster -v
 ```
 
 

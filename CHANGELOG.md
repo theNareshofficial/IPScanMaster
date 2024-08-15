@@ -1,5 +1,8 @@
 ## CHANGELOG
 
+* v2.02a
+* v2.02a - Updated src/ping.py (Bug fixed)
+* v2.02a - Updated src/waf.py (Module Updated)
 * v2.02
 * v2.02 - Updated assets/image (Banner Image)
 * v2.02 - Updated tool/core/config.py (Version Updated)

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import wafw00f
-import wafw00f.main
+import wafw00f.main     
 from urllib.parse import urlparse
 from tools.color import *
 

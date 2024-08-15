@@ -20,8 +20,17 @@ def ip_Reachable(ip):
                                     print(f"{BRIGHT_MAGENTA} [+] {BRIGHT_CYAN}{ip} is Reachable...")
                                     return 0
                         else:
-                                    print(f"{BRIGHT_MAGENTA} [!] {BRIGHT_RED}{ip} is not Reachable!!!")
-                                    exit()
+                                    print(f"{BRIGHT_MAGENTA} [!] {BRIGHT_RED}{ip} is not Reachable!!!")                                
+
+                                    choice = input(f"{BRIGHT_MAGENTA} [~] {BRIGHT_CYAN}You want continue (y/n) : ")
+                                    if choice == "y":
+                                            pass
+                                    elif choice == "n":
+                                            exit(1)
+                                    else:
+                                        print(f"{BRIGHT_MAGENTA} [!] {BRIGHT_RED}'{choice}' Invalid!!!")
+                                        exit()
+                                                
             except Exception as ping_error:
                     print(f"{BRIGHT_MAGENTA} [!] {BRIGHT_RED}{ping_error}, path={__path__}")
             except KeyboardInterrupt:

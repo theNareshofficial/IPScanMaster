@@ -1,5 +1,16 @@
 ## CHANGELOG
 
+* v2.03
+* v2.03 - Updated assets/image.png (Updated new img)
+* v2.03 - Updated libs/imports.py (Updated Attack, Timezone)
+* v2.03 - Updated injection/dirb-common.txt (Dirb buster)
+* v2.03 - Updated src/attack.py (Attack Mode)
+* v2.03 - Updated src/ports.py (Updated Port's)
+* v2.03 - Updated tools/core/config.py (Version v2.03)
+* v2.03 - Updated tools/time_zone.py (Updated Time Zone)
+* v2.03 - Updated README.md (Updated ReadMe)
+* v2.03 - Updated main.py (Updated Attack Mode)
+* v2.03 - Updated setup.sh (install dirsearch, nmap, subfinder)
 * v2.02a
 * v2.02a - Updated src/ping.py (Bug fixed)
 * v2.02a - Updated src/waf.py (Module Updated)

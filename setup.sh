@@ -28,7 +28,7 @@ echo """
           |  Github  : https://github.com/theNareshofficial
           |  Youtube : https://www.youtube.com/@nareshtechweb930    
 
-                            IPScanMaster : v2.02
+                            IPScanMaster : v2.03
     ...A Tool for Gathering Detailed Information about IPs and Domains...
 """
 
@@ -68,22 +68,9 @@ check_python() {
         return 0
     else
         echo "[!]---------->> Python3 Not Found"
-        echo "Python3 Installing..."
+        echo "[~]Python3 Installing..."
         sudo apt install python3 -y &>/dev/null
-        echo "Python3 Installation Completed"
-        return 1
-    fi
-}
-
-check_git() {
-    if command_exists git; then
-        echo "[+]---------->> Git Found"
-        return 0
-    else
-        echo "[!]---------->> Git Not Found"
-        echo "Git Installing..."
-        sudo apt install git -y &>/dev/null
-        echo "Git Installation Completed"
+        echo "[+]Python3 Installation Completed"
         return 1
     fi
 }
@@ -93,16 +80,45 @@ check_wafw00f() {
         echo "[+]---------->> Wafw00f Found"
     else
         echo "[!]---------->> Wafw00f Not Found"
-        echo "Wafw00f Installing..."
+        echo "[~]Wafw00f Installing..."
         sudo apt install wafw00f -y &>/dev/null
-        echo "Wafw00f Installation Completed"
+        echo "[+]Wafw00f Installation Completed"
     fi
 }
 
-global_access() {
-    chmod +x main.py
-    sudo ln -sf $(pwd)/main.py /usr/local/bin/ipscanmaster
-    echo "[+] IPScanMaster has been installed. You can now use the 'ipscanmaster' command from anywhere."
+check_subfinder() {
+    if command_exists subfinder; then
+        echo "[+]---------->> subfinder Found"
+    else
+        echo "[+]---------->> subfinder Not Found"
+        echo "[~]---------->> subfinder Installting..."
+        sudo apt install subfinder -y &>/dev/null
+        echo "[+]subfinder Installation Completed"
+    fi
+
+}
+
+check_dirSearch() {
+    if command_exists dirsearch; then
+        echo "[+]---------->> dirsearch Found"
+    else
+        echo "[+]---------->> dirsearch Not Found"
+        echo "[~]---------->> dirsearch Installting..."
+        sudo apt install dirsearch -y &>/dev/null
+        echo "[+]dirsearch Installation Completed"
+    fi
+
+}
+
+check_nmap() {
+    if command_exists nmap; then
+        echo "[+]---------->> NMAP Found"
+    else
+        echo "[+]---------->> NMAP Not Found"
+        echo "[~]---------->> NMAP Installting..."
+        sudo apt install NMAP -y &>/dev/null
+        echo "[+]NMAP Installation Completed"
+    fi
 
 }
 
@@ -115,10 +131,11 @@ install_requirements() {
 
 if check_root && check_inet; then
     check_python
-    check_git
     check_wafw00f
+    check_dirSearch
+    check_nmap
+    check_subfinder
     install_requirements
-    global_access
     exit 0
 else
     exit 1

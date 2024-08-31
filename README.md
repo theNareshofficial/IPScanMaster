@@ -4,10 +4,16 @@
 
 <h1 align="center">IPScan Master ~ v2.02</h1>
 
-**IPScanMaster** is a tool designed to retrieve detailed information about IPv4 addresses and DNS names, including original DNS names, port scanning, SubDomain's, WAF checks, IP reachability, and WHOIS information. This tool runs on Debian-based Linux OS.
+**IPScanMaster** appears to be a network analysis tool with two main functionalities: Scan and Attack. 
+
+The **Scan** mode is designed to gather comprehensive data on IPv4 addresses and DNS names, including original DNS names, port scanning, subdomain discovery, Web Application Firewall (WAF) checks, IP reachability, and WHOIS information. This mode seems to be focused on reconnaissance and information gathering, which is a critical first step in network security assessment.
+
+On the other hand, the **Attack** mode suggests an aggressive approach to identify and exploit vulnerabilities. It mentions utilizing open ports, subdomains, and various tools like Httpx-toolkit, WAF checks for each subdomain, and Nmap for WHOIS information and vulnerability scanning. The output files are saved in a specified directory.
+
+It's important to note that the use of such tools should be conducted ethically and within legal boundaries. Unauthorized scanning or attacking of networks can be illegal and unethical. It's crucial to have permission from the network owner before conducting any scans or tests. Responsible use of IPScanMaster can aid in strengthening network security by identifying vulnerabilities that need to be addressed. Always ensure that your actions comply with local laws and regulations regarding cybersecurity.
 
 # Features 🎯
-
+### Scan
 - Check IP Reachability
 - Check IP Validate
 - Reverse Lookup for Original IP & DNS
@@ -16,7 +22,14 @@
 - Sub-Domains
 - IPINFO.io API Integration
 - WHOIS Command Info
-- Access Anywhere in your linux system 'ipscanmaster'
+
+### Attack
+- SubDomain Enumeration
+- HTTPX-Toolkit
+- WAFW00F Check each sub-domain's
+- NMAP --script Whois-Domain
+- NMAP --script Whois-IP
+- NMAP --script Vulners
 
 # Key Concepts 🔑
 
@@ -69,58 +82,52 @@ $ chmod +x setup.sh
 $ sudo ./setup.sh
 ```
 
-### You can Access Anywhere in your linux system 'ipscanmaster'
+### Run Attack Mode(All)
 ```bash
-ipscanmaster --help
+$ sudo python main.py -m attack -d example.com
 ```
 
-### Run main.py file
+### Run Scan Mode(All)
 ```bash
-$ ipscanmaster -d example.com or 8.8.8.8
+$ sudo python main.py -m scan -d example.com
 ```
 
 # Help Option's👇
 
 ### Show help
 ```bash
-ipscanmaster -h
-```
-
-### DNS & IPv4, It'll show all the option's
-```bash
-ipscanmaster -d example.com or 8.8.8.8
+$ sudo python main.py -h
 ```
 
 ### Show Real Address
 ```bash
-ipscanmaster -r exapmle.com
+$ sudo python main.py -m scan -r example.com
 ```
 
 ### Show SubDomains
 ```bash
-ipscanmaster -s example.com
+$ sudo python main.py -m scan -s example.com
 ```
 
 ### Show All Open Port's
 ```bash
-ipscanmaster -p example.com
+$ sudo python main.py -m scan -p example.com
 ```
 
 ### Web Application Firewall(WAF) Check
 ```bash
-ipscanmaster -w example.com
+$ sudo python main.py -m scan -w example.com
 ```
 
 ### IP Information
 ```bash
-ipscanmaster -i https://example.com/
+$ sudo python main.py -m scan -i example.com
 ```
 
 ### Show version
 ```bash
-ipscanmaster -v
+$ sudo python main.py -v
 ```
-
 
 # Tested OS🧪
 

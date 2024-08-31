@@ -3,7 +3,6 @@
 import argparse
 from libs import *
 
-
 def connection(uIP):
     try:
         if inet_conn() == 0:
@@ -13,9 +12,9 @@ def connection(uIP):
             ip_Reachable(ip=uIP)
             print(f"\n{BRIGHT_MAGENTA}[+]---------- Checking WAF(Web Application Firewall) ----------[+]{BRIGHT_GREEN}\n")
             check_waf(ip=uIP)
-            print(f"\n{BRIGHT_MAGENTA}[+]---------- Checking Sub-Domain's ----------[+]{BRIGHT_GREEN}\n")
+            print(f"\n{BRIGHT_MAGENTA}[+]---------- Checking Sub-Domains ----------[+]{BRIGHT_GREEN}\n")
             enumerate_subdomain(domain=uIP)
-            print(f"\n{BRIGHT_MAGENTA}[+]---------- Checking Open Port's ----------[+]{BRIGHT_GREEN}\n")
+            print(f"\n{BRIGHT_MAGENTA}[+]---------- Checking Open Ports ----------[+]{BRIGHT_GREEN}\n")
             scan_ports(ip=uIP)
             uIP = ip_chg(ip=uIP)
             print(f"\n{BRIGHT_MAGENTA}[+]---------- IP Information ----------[+]{BRIGHT_GREEN}")
@@ -24,10 +23,11 @@ def connection(uIP):
             check_whois(ip=uIP)
             print(f"\n{BRIGHT_MAGENTA}[+]---------- Completed ----------[+]{BRIGHT_GREEN}\n")
 
-    except Exception as conn_error:
-        print(f"{RED}Conn_Error : {conn_error}, Path ={__file__}")
     except KeyboardInterrupt:
-        pass
+        print(f"{RED}Operation canceled by user.{RESET}")
+        exit(0)
+    except Exception as conn_error:
+        print(f"{RED}Conn_Error : {conn_error}, Path ={__file__}{RESET}")
 
 class Main:
     @classmethod
@@ -38,42 +38,56 @@ class Main:
         )
         
         parser.add_argument("-d", type=str, metavar="Dns or IPv4", help="Enter IPv4 or DNS name")
+        parser.add_argument("-m", type=str, metavar="Mode", required=True, choices=["attack", "scan"], help="Select the Mode for Attack or Scan")
         parser.add_argument("-r", type=str, metavar="Real Address", help="Reverse Real IPv4 or Domain name")
         parser.add_argument("-s", type=str, metavar="Subdomains", help="Print all SubDomains")
-        parser.add_argument("-p", type=str, metavar="Port's", help="Print all Open Ports")
+        parser.add_argument("-p", type=str, metavar="Ports", help="Print all Open Ports")
         parser.add_argument("-w", type=str, metavar="WAF check", help="Web Application Firewall check")
-        parser.add_argument("-i", type=str, metavar="IP INFO", help="Get IP Infomation")
+        parser.add_argument("-i", type=str, metavar="IP INFO", help="Get IP Information")
         parser.add_argument("-v", "--version", action="version", version=config.version, help="IPScanMaster")
 
         args = parser.parse_args()
 
         try:
-            if args.d:
-                uIP = args.d
-            elif args.s:
-                s = args.s
-                enumerate_subdomain(domain=s)
-                return None, s
-            elif args.p:
-                p = args.p
-                scan_ports(ip=p)
-            elif args.w:
-                w = args.w
-                check_waf(ip=w)
-            elif args.r:
-                r = args.r
-                reverseIP(ip=r)
-            elif args.i:
-                i = args.i
-                ipinfo(ip=i)
+            uIP = None
+            if args.m == "scan":
+                if args.d:
+                    uIP = args.d
+                elif args.s:
+                    enumerate_subdomain(domain=args.s)
+                    return None, args.s
+                elif args.p:
+                    scan_ports(ip=args.p)
+                    return None, args.p
+                elif args.w:
+                    check_waf(ip=args.w)
+                    return None, args.w
+                elif args.r:
+                    reverseIP(ip=args.r)
+                    return None, args.r
+                elif args.i:
+                    ipinfo(ip=args.i)
+                    return None, args.i
+                else:
+                    parser.print_help()
+                    exit(1)
+            elif args.m == "attack":
+                if args.d:
+                    uIP = args.d
+                    attacker = Attacking(IP=uIP)  # Correctly create an instance
+                    attacker.run_commands()       # Call method on the instance
+                    exit(0)
+                else:
+                    print("IP or DNS is required for attack mode.")
+                    exit(1)
             else:
                 parser.print_help()
                 exit(1)
 
-            uIP = uIP.replace("https://", "").replace("http://", "").rstrip("/")
+            if uIP:
+                uIP = uIP.replace("https://", "").replace("http://", "").rstrip("/")
             return uIP, None
         
-        except UnboundLocalError: pass
         except ValueError as e:
             print(f"{RED}Value Error: {e}. Path = {__file__}{RESET}")
             exit(1)
@@ -83,11 +97,18 @@ class Main:
 
 
 if __name__ == "__main__":
+    TimeZone.start_time()
+    uIP = None  # Ensure uIP is defined before it's used
     try:
         uIP, _ = Main.args_main()
         if uIP:
-            ip_history(ip=uIP)  # Store in history file
             validate_ip_dns(uIP)
             connection(uIP)
+    except KeyboardInterrupt:
+        print(f"{RED}Execution interrupted by user.{RESET}")
     except Exception as e:
-        pass
+        print(f"{RED}Error: {e}{RESET}")
+    finally:
+        TimeZone.end_time()
+        if uIP:
+            ip_history(ip=uIP)  # Store in history file

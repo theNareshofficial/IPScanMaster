@@ -1,5 +1,9 @@
 ## CHANGELOG
 
+* v2.04
+* v2.04 - Updated README.md (README.md)
+* v2.04 - Updated src/attack.py (Updated Dirlister & Port Scan)
+* v2.04 - Updated tools/core/config.py (version v2.04)
 * v2.03
 * v2.03 - Updated assets/image.png (Updated new img)
 * v2.03 - Updated libs/imports.py (Updated Attack, Timezone)

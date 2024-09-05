@@ -18,18 +18,28 @@ class Attacking:
 
             print(f"\n{BRIGHT_MAGENTA}[+]---------- Open Port Scan ----------[+]{RESET}{BRIGHT_GREEN}\n")
             enumerate_subdomain(domain=self.IP)
+    
             print(f"\n{BRIGHT_MAGENTA}[+]---------- SubDomain Enumeration ----------[+]{RESET}{BRIGHT_GREEN}\n")
             subprocess.run(f"sudo subfinder -d {self.IP} -o output/{path}/subdomains.txt", shell=True, check=True)
+
             print(f"\n{BRIGHT_MAGENTA}[+]---------- HTTPX-Toolkit ----------[+]{RESET}{BRIGHT_GREEN}\n")
             subprocess.run(f"sudo httpx-toolkit -l output/{path}/subdomains.txt -o output/{path}/https.txt", shell=True, check=True)
+
             print(f"\n{BRIGHT_MAGENTA}[+]---------- WAFW00F Check ----------[+]{RESET}{BRIGHT_GREEN}\n")
             subprocess.run(f"sudo wafw00f -i output/{path}/https.txt -o output/{path}/waf.txt", shell=True, check=True)
+
+            print(f"\n{BRIGHT_MAGENTA}[+]---------- Directory Search ----------[+]{RESET}{BRIGHT_GREEN}\n")
+            subprocess.run(f"sudo dirsearch -u {self.IP} -w injection/dirb_common.txt -o output/{path}/dirsearch.txt", shell=True, check=True)
+
             print(f"\n{BRIGHT_MAGENTA}[+]---------- NMAP Whois-Domain ----------[+]{RESET}{BRIGHT_GREEN}\n")
             subprocess.run(f"sudo nmap --script whois-domain.nse {self.IP} -oN output/{path}/whois_Domain.txt", shell=True)
+
             print(f"\n{BRIGHT_MAGENTA}[+]---------- NMAP Whois-IP ----------[+]{RESET}{BRIGHT_GREEN}\n")
             subprocess.run(f"sudo nmap {self.IP} --script whois-ip -o output/{path}/whois_IP.txt", shell=True, check=True)
+
             print(f"\n{BRIGHT_MAGENTA}[+]---------- NMAP Vulners ----------[+]{RESET}{BRIGHT_GREEN}\n")
             subprocess.run(f"sudo nmap -sV --script vulners {self.IP} -oN output/{path}/Vulners.txt", shell=True, check=True)
+
             print(f"\n{BRIGHT_MAGENTA}[+]---------- Completed ----------[+]{BRIGHT_GREEN}\n")
 
             print(f"{BRIGHT_MAGENTA}[+]{BRIGHT_CYAN} Saved output/{path}/subdomains.txt")

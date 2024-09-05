@@ -8,7 +8,7 @@
 
 The **Scan** mode is designed to gather comprehensive data on IPv4 addresses and DNS names, including original DNS names, port scanning, subdomain discovery, Web Application Firewall (WAF) checks, IP reachability, and WHOIS information. This mode seems to be focused on reconnaissance and information gathering, which is a critical first step in network security assessment.
 
-On the other hand, the **Attack** mode suggests an aggressive approach to identify and exploit vulnerabilities. It mentions utilizing open ports, subdomains, and various tools like Httpx-toolkit, WAF checks for each subdomain, and Nmap for WHOIS information and vulnerability scanning. The output files are saved in a specified directory.
+On the other hand, the **Attack** mode suggests an aggressive approach to identify and exploit vulnerabilities. It mentions utilizing open ports, subdomains, and various tools like Httpx-toolkit, WAF checks for each subdomain, Dirsearch and Nmap for WHOIS information and vulnerability scanning. The output files are saved in a specified directory.
 
 It's important to note that the use of such tools should be conducted ethically and within legal boundaries. Unauthorized scanning or attacking of networks can be illegal and unethical. It's crucial to have permission from the network owner before conducting any scans or tests. Responsible use of IPScanMaster can aid in strengthening network security by identifying vulnerabilities that need to be addressed. Always ensure that your actions comply with local laws and regulations regarding cybersecurity.
 
@@ -24,9 +24,11 @@ It's important to note that the use of such tools should be conducted ethically 
 - WHOIS Command Info
 
 ### Attack
+- Port Scanning
 - SubDomain Enumeration
 - HTTPX-Toolkit
 - WAFW00F Check each sub-domain's
+- Dirsearch
 - NMAP --script Whois-Domain
 - NMAP --script Whois-IP
 - NMAP --script Vulners

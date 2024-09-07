@@ -39,7 +39,7 @@ class Main:
             description=config.description
         )
         
-        parser.add_argument("-u", type=str, metavar="Dns or IPv4", help="Enter IPv4 or DNS name")
+        parser.add_argument("-u", type=str, metavar="url", help="Enter IPv4 or DNS name")
         parser.add_argument("-m", type=str, metavar="Mode", required=True, choices=["attack", "scan"], help="Select the Mode for Attack or Scan")
         parser.add_argument("-r", type=str, metavar="Real Address", help="Reverse Real IPv4 or Domain name")
         parser.add_argument("-s", type=str, metavar="Subdomains", help="Print all SubDomains")

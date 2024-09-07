@@ -10,16 +10,16 @@ try:
                   from src.IPchg import *
                   from src.sublister import *
                   from src.attack import *
+                  from src.dir import *
                   from tools.clrscr import *
                   from tools.inet import *
                   from tools.banner import *
                   from tools.color import *
                   from tools.ip_history import *
-                  from tools.core import config
                   from tools.time_zone import *
 
-except ModuleNotFoundError:
-        print(f" [!] Module Not found ERROR, path={__file__} ")
+except ModuleNotFoundError as Module_error:
+        print(f" [!] Module_error : {Module_error}, path={__file__} ")
         exit()
 except Exception as import_error:
         print(f" [!] {import_error}, path={__file__}")

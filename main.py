@@ -16,6 +16,8 @@ def connection(uIP):
             enumerate_subdomain(domain=uIP)
             print(f"\n{BRIGHT_MAGENTA}[+]---------- Checking Open Ports ----------[+]{BRIGHT_GREEN}\n")
             scan_ports(ip=uIP)
+            print(f"\n{BRIGHT_MAGENTA}[+]---------- Dirsearch ----------[+]{BRIGHT_GREEN}\n")
+            DirSearch.search(self=DirSearch, ip=uIP)
             uIP = ip_chg(ip=uIP)
             print(f"\n{BRIGHT_MAGENTA}[+]---------- IP Information ----------[+]{BRIGHT_GREEN}")
             ipinfo(ip=uIP)
@@ -37,11 +39,12 @@ class Main:
             description=config.description
         )
         
-        parser.add_argument("-d", type=str, metavar="Dns or IPv4", help="Enter IPv4 or DNS name")
+        parser.add_argument("-u", type=str, metavar="Dns or IPv4", help="Enter IPv4 or DNS name")
         parser.add_argument("-m", type=str, metavar="Mode", required=True, choices=["attack", "scan"], help="Select the Mode for Attack or Scan")
         parser.add_argument("-r", type=str, metavar="Real Address", help="Reverse Real IPv4 or Domain name")
         parser.add_argument("-s", type=str, metavar="Subdomains", help="Print all SubDomains")
         parser.add_argument("-p", type=str, metavar="Ports", help="Print all Open Ports")
+        parser.add_argument("-d", type=str, metavar="DirSearch", help="Small Directory Search")
         parser.add_argument("-w", type=str, metavar="WAF check", help="Web Application Firewall check")
         parser.add_argument("-i", type=str, metavar="IP INFO", help="Get IP Information")
         parser.add_argument("-v", "--version", action="version", version=config.version, help="IPScanMaster")
@@ -51,14 +54,16 @@ class Main:
         try:
             uIP = None
             if args.m == "scan":
-                if args.d:
-                    uIP = args.d
+                if args.u:
+                    uIP = args.u
                 elif args.s:
                     enumerate_subdomain(domain=args.s)
                     return None, args.s
                 elif args.p:
                     scan_ports(ip=args.p)
                     return None, args.p
+                elif args.d:
+                    DirSearch.search(self=DirSearch, ip=args.d)
                 elif args.w:
                     check_waf(ip=args.w)
                     return None, args.w
@@ -73,9 +78,9 @@ class Main:
                     exit(1)
             elif args.m == "attack":
                 if args.d:
-                    uIP = args.d
-                    attacker = Attacking(IP=uIP)  # Correctly create an instance
-                    attacker.run_commands()       # Call method on the instance
+                    uIP = args.u
+                    attacker = Attacking(IP=uIP) 
+                    attacker.run_commands()
                     exit(0)
                 else:
                     print("IP or DNS is required for attack mode.")
@@ -98,7 +103,7 @@ class Main:
 
 if __name__ == "__main__":
     TimeZone.start_time()
-    uIP = None  # Ensure uIP is defined before it's used
+    uIP = None
     try:
         uIP, _ = Main.args_main()
         if uIP:

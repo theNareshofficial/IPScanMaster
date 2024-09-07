@@ -1,5 +1,11 @@
 ## CHANGELOG
 
+* v2.05
+* v2.05 - Updated main.py (args.d dir search)
+* v2.05 - Updated injection/dirb_small (Dir Small)
+* v2.05 - Updated libs/imports.py (dir updated)
+* v2.05 - Updated tools/core/config.py (version v2.05)
+* v2.05 - Updated src/dir.py (DirSearch)
 * v2.04
 * v2.04 - Updated README.md (README.md)
 * v2.04 - Updated src/attack.py (Updated Dirlister & Port Scan)

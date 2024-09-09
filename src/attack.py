@@ -17,7 +17,7 @@ class Attacking:
             path = (f"{self.IP}_{dt}")
 
             print(f"\n{BRIGHT_MAGENTA}[+]---------- Open Port Scan ----------[+]{RESET}{BRIGHT_GREEN}\n")
-            enumerate_subdomain(domain=self.IP)
+            scan_ports(ip=self.IP)
     
             print(f"\n{BRIGHT_MAGENTA}[+]---------- SubDomain Enumeration ----------[+]{RESET}{BRIGHT_GREEN}\n")
             subprocess.run(f"sudo subfinder -d {self.IP} -o output/{path}/subdomains.txt", shell=True, check=True)

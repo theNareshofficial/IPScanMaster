@@ -77,7 +77,7 @@ class Main:
                     parser.print_help()
                     exit(1)
             elif args.m == "attack":
-                if args.d:
+                if args.u:
                     uIP = args.u
                     attacker = Attacking(IP=uIP) 
                     attacker.run_commands()

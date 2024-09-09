@@ -1,5 +1,10 @@
 ## CHANGELOG
 
+* v2.06
+* v2.06 - Updated tools/core/config.py (version v2.06)
+* v2.06 - Updated src/attack.py (Port patch)
+* v2.06 - Updated README.md
+* v2.06 - Updated main.py (Bug fixed)
 * v2.05
 * v2.05 - Updated main.py (args.d dir search)
 * v2.05 - Updated injection/dirb_small (Dir Small)

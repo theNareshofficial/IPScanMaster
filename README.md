@@ -6,7 +6,7 @@
 
 **IPScanMaster** appears to be a network analysis tool with two main functionalities: Scan and Attack. 
 
-The **Scan** mode is designed to gather comprehensive data on IPv4 addresses and DNS names, including original DNS names, port scanning, subdomain discovery, Web Application Firewall (WAF) checks, IP reachability, and WHOIS information. This mode seems to be focused on reconnaissance and information gathering, which is a critical first step in network security assessment.
+The **Scan** mode is designed to gather comprehensive data on IPv4 addresses and DNS names, including original DNS names, port scanning, subdomain discovery, Web Application Firewall (WAF) checks, IP reachability, Dirsearch and WHOIS information. This mode seems to be focused on reconnaissance and information gathering, which is a critical first step in network security assessment.
 
 On the other hand, the **Attack** mode suggests an aggressive approach to identify and exploit vulnerabilities. It mentions utilizing open ports, subdomains, and various tools like Httpx-toolkit, WAF checks for each subdomain, Dirsearch and Nmap for WHOIS information and vulnerability scanning. The output files are saved in a specified directory.
 
@@ -19,6 +19,7 @@ It's important to note that the use of such tools should be conducted ethically 
 - Reverse Lookup for Original IP & DNS
 - WAF Detection
 - Port Scanning
+- Dirsearch
 - Sub-Domains
 - IPINFO.io API Integration
 - WHOIS Command Info
@@ -86,12 +87,12 @@ $ sudo ./setup.sh
 
 ### Run Attack Mode(All)
 ```bash
-$ sudo python main.py -m attack -d example.com
+$ sudo python main.py -m attack -u example.com
 ```
 
 ### Run Scan Mode(All)
 ```bash
-$ sudo python main.py -m scan -d example.com
+$ sudo python main.py -m scan -u example.com
 ```
 
 # Help Option's👇
@@ -119,6 +120,11 @@ $ sudo python main.py -m scan -p example.com
 ### Web Application Firewall(WAF) Check
 ```bash
 $ sudo python main.py -m scan -w example.com
+```
+
+### DirSearch
+```bash
+$ sudo python main.py -m scan -d example.com
 ```
 
 ### IP Information

@@ -64,12 +64,13 @@ check_inet() {
 
 check_python() {
     if command_exists python3; then
-        echo "[+]---------->> Python Found"
+        echo "[+]---------->> Python3 Found"
         return 0
     else
         echo "[!]---------->> Python3 Not Found"
         echo "[~]Python3 Installing..."
         sudo apt install python3 -y &>/dev/null
+        sudo apt install python3-pip -y &>/dev/null
         echo "[+]Python3 Installation Completed"
         return 1
     fi

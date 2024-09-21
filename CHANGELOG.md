@@ -1,5 +1,7 @@
 ## CHANGELOG
 
+* v2.06a
+* v2.06a - Updated setup.sh (pip patched)
 * v2.06
 * v2.06 - Updated tools/core/config.py (version v2.06)
 * v2.06 - Updated src/attack.py (Port patch)

@@ -31,6 +31,8 @@ update() {
             sudo apt install --only-upgrade nmap
             echo "[+]----->> Updating Subfinder..."
             sudo apt install --only-upgrade subfinder
+            echo "[+]----->> Updating httpx-toolkit..."
+            sudo apt install --only-upgrade httpx-toolkit
             echo "[+]----->> Updating Python3..."
             sudo apt install --only-upgrade python3
             echo "[+]----->> Update Completed..."

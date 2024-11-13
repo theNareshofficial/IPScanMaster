@@ -1,5 +1,10 @@
 ## CHANGELOG
 
+* v2.07
+* v2.07 - Updated tools/core/config.py (version v2.07)
+* v2.07 - Updated src/attack.py (reverseIP)
+* v2.07 - Updated update.sh (Tools Update)
+* v2.07 - Updated setup.sh (httpx-toolkit)
 * v2.06a
 * v2.06a - Updated setup.sh (pip patched)
 * v2.06

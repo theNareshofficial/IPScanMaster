@@ -28,7 +28,7 @@ echo """
           |  Github  : https://github.com/theNareshofficial
           |  Youtube : https://www.youtube.com/@nareshtechweb930    
 
-                            IPScanMaster : v2.03
+                            IPScanMaster : v2.07
     ...A Tool for Gathering Detailed Information about IPs and Domains...
 """
 
@@ -99,6 +99,18 @@ check_subfinder() {
 
 }
 
+check_httpx() {
+    if command_exists httpx-toolkit; then
+        echo "[+]---------->> httpx-toolkit Found"
+    else
+        echo "[+]---------->> httpx-toolkit Not Found"
+        echo "[~]---------->> httpx-toolkit Installting..."
+        sudo apt install httpx-toolkit -y &>/dev/null
+        echo "[+]httpx-toolkit Installation Completed"
+    fi
+
+}
+
 check_dirSearch() {
     if command_exists dirsearch; then
         echo "[+]---------->> dirsearch Found"
@@ -136,6 +148,7 @@ if check_root && check_inet; then
     check_dirSearch
     check_nmap
     check_subfinder
+    check_httpx
     install_requirements
     exit 0
 else

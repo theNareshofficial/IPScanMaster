@@ -4,10 +4,11 @@ import subprocess
 import datetime
 from tools.color import *
 from src.ports import *
+from src.reverse import *
 
 class Attacking:
 
-    def __init__(self, IP):
+    def __init__(self, IP=None):
         self.IP = IP
 
     def run_commands(self):
@@ -15,6 +16,10 @@ class Attacking:
 
             dt = datetime.datetime.now().strftime("%d:%B:%Y_%H:%M:%S")
             path = (f"{self.IP}_{dt}")
+
+            print(f"\n{BRIGHT_MAGENTA}[+]---------- Checking Your Original IP ----------[+]{RESET}{BRIGHT_GREEN}\n")
+            self.IP = reverseIP(ip=self.IP)
+            print(f"Original IP : {self.IP}")
 
             print(f"\n{BRIGHT_MAGENTA}[+]---------- Open Port Scan ----------[+]{RESET}{BRIGHT_GREEN}\n")
             scan_ports(ip=self.IP)

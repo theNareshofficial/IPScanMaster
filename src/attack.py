@@ -18,8 +18,7 @@ class Attacking:
             path = (f"{self.IP}_{dt}")
 
             print(f"\n{BRIGHT_MAGENTA}[+]---------- Checking Your Original IP ----------[+]{RESET}{BRIGHT_GREEN}\n")
-            self.IP = reverseIP(ip=self.IP)
-            print(f"Original IP : {self.IP}")
+            reverseIP(ip=self.IP)
 
             print(f"\n{BRIGHT_MAGENTA}[+]---------- Open Port Scan ----------[+]{RESET}{BRIGHT_GREEN}\n")
             scan_ports(ip=self.IP)

@@ -72,7 +72,7 @@ class Attacking:
 
 
 if __name__ == "__main__":
-    try
+    try:
         ip_address = input("Enter the IP or domain: ").strip()
         attacker = Attacking(IP=ip_address)
         attacker.run_commands()

@@ -11,6 +11,7 @@ try:
                   from src.sublister import *
                   from src.attack import *
                   from src.dir import *
+                  from src.wayback import *
                   from tools.clrscr import *
                   from tools.inet import *
                   from tools.banner import *

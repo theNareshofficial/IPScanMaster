@@ -29,6 +29,7 @@ It's important to note that the use of such tools should be conducted ethically 
 - SubDomain Enumeration
 - HTTPX-Toolkit
 - WAFW00F Check each sub-domain's
+- Wayback Browser History
 - Dirsearch
 - NMAP --script Whois-Domain
 - NMAP --script Whois-IP
@@ -47,6 +48,9 @@ It's important to note that the use of such tools should be conducted ethically 
 
 ## Port Scanning
 - Scans mentioned open ports, covering 85 advanced common ports to identify open ports quickly.
+
+## Wayback
+- The Wayback Machine is an online archive that captures snapshots of websites over time, allowing users to view the historical versions of web pages as they appeared on specific dates.
 
 ## SubDomain Lister
 - This function identifies and lists all subdomains associated with the given domain. This can help in uncovering additional points of entry or services running under the main domain.
@@ -118,6 +122,11 @@ $ sudo python main.py -m scan -p example.com
 ```
 
 ### Web Application Firewall(WAF) Check
+```bash
+$ sudo python main.py -m scan -f example.com
+```
+
+### Wayback Browser History
 ```bash
 $ sudo python main.py -m scan -w example.com
 ```

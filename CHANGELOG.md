@@ -1,5 +1,14 @@
 ## CHANGELOG
 
+
+* v2.08
+* v2.08 - Upgraded libs/import.py (Updated src.wayback)
+* v2.08 - Upgraded tools/core/config.py (version v2.08)
+* v2.08 - Upgraded src/attack.py (wayback upgraded)
+* v2.08 - Upgraded src/wayback.py (Updated Output)
+* v2.08 - Upgraded src/wayback.py (Added wayback)
+* v2.08 - Upgraded setup.sh (v2.08)
+* v2.08 - Updated main.py (Updated -w arguments)
 * v2.07
 * v2.07 - Updated tools/core/config.py (version v2.07)
 * v2.07 - Updated src/attack.py (reverseIP)

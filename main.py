@@ -64,6 +64,7 @@ class Main:
         parser.add_argument("-d", type=str, metavar="DirSearch", help="Small Directory Search")
         parser.add_argument("-f", type=str, metavar="WAF check", help="Web Application Firewall check")
         parser.add_argument("-w", type=str, metavar="Wayback", help="Wayback Machine")
+        parser.add_argument("-x", type=str, metavar="XSS", help="XSS Attack Payload")
         parser.add_argument("-i", type=str, metavar="IP INFO", help="Get IP Information")
         parser.add_argument("-v", "--version", action="version", version=config.version, help="IPScanMaster")
 
@@ -79,33 +80,46 @@ class Main:
 
                 if args.u:
                     uIP = args.u
+
                 elif args.s:
                     print(f"{BRIGHT_BLUE}[DEBUG] Enumerating subdomains{RESET}")
                     enumerate_subdomain(domain=args.s)
                     return None, args.s
+                
                 elif args.p:
                     print(f"{BRIGHT_BLUE}[DEBUG] Scanning ports{RESET}")
                     scan_ports(ip=args.p)
                     return None, args.p
+                
                 elif args.d:
                     print(f"{BRIGHT_BLUE}[DEBUG] Performing directory search{RESET}")
                     DirSearch.search(self=DirSearch, ip=args.d)
+
                 elif args.f:
                     print(f"{BRIGHT_BLUE}[DEBUG] Checking WAF{RESET}")
                     check_waf(ip=args.f)
                     return None, args.f
+                
                 elif args.w:
                     print(f"{BRIGHT_BLUE}[DEBUG] Using Wayback Machine{RESET}")
                     wayback = Wayback(url=args.w)
                     wayback.getData()
+
+                elif args.x:
+                    print(f"{BRIGHT_BLUE}[DEBUG] Using XSS-Attack Machine{RESET}")
+                    vulb = XSSAttack(url=args.x)
+                    vulb.attack()
+
                 elif args.r:
                     print(f"{BRIGHT_BLUE}[DEBUG] Performing reverse IP lookup{RESET}")
                     reverseIP(ip=args.r)
                     return None, args.r
+                
                 elif args.i:
                     print(f"{BRIGHT_BLUE}[DEBUG] Getting IP information{RESET}")
                     ipinfo(ip=args.i)
                     return None, args.i
+                
                 else:            
                     print(f"{BRIGHT_RED}[ERROR] No valid arguments provided for scan mode{RESET}")
                     parser.print_help()
@@ -117,9 +131,11 @@ class Main:
                     attacker = Attacking(IP=uIP)
                     attacker.run_commands()
                     exit(0)
+
                 else:
                     print(f"{BRIGHT_RED}[ERROR] IP or DNS is required for attack mode{RESET}")
                     exit(1)
+
             else:
                 print(f"{BRIGHT_RED}[ERROR] Invalid mode provided{RESET}")
                 parser.print_help()
@@ -130,14 +146,13 @@ class Main:
             return uIP, None
 
         except ValueError as e:
-    
             print(f"{BRIGHT_RED}[ERROR] Value Error: {e}. Path = {__file__}{RESET}")
             exit(1)
 
         except Exception as e:
-    
             print(f"{BRIGHT_RED}[ERROR] Unexpected Error: {e}. Path = {__file__}{RESET}")
             exit(1)
+            
 if __name__ == "__main__":
     TimeZone.start_time()
     uIP = None

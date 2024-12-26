@@ -22,7 +22,7 @@ class XSSAttack:
             print(f"{BRIGHT_RED}[ERROR] No URL provided. Exiting.")
             return
 
-        payload_file = './injection/payload/XSS-payloadbox.txt'
+        payload_file = './injection/payload/xss.txt'
 
         payloads = self.load_payloads(payload_file)
 
@@ -35,11 +35,16 @@ class XSSAttack:
 
             try:
                 response = requests.get(self.url, params=params)
+                print(f"RESPONSE : {response.json}")
 
                 if payload in response.text:
-                    print(f"{BRIGHT_MAGENTA}[Vulnerable] --> {BRIGHT_CYAN}{self.url} --> {BRIGHT_GREEN}{payload}")
+                    print(response)
+                    out = (f"{BRIGHT_MAGENTA}[Vulnerable] --> {BRIGHT_CYAN}{self.url} --> {BRIGHT_GREEN}{payload}")
+                    print(out)
                 else:
-                    print(f"{BRIGHT_RED}[NOT Vulnerable] --> {BRIGHT_CYAN}{self.url} --> {BRIGHT_GREEN}{payload}")
+                    print(response)
+                    out = (f"{BRIGHT_RED}[NOT Vulnerable] --> {BRIGHT_CYAN}{self.url} --> {BRIGHT_GREEN}{payload}")
+                    print(out)
 
             except requests.exceptions.RequestException as e:
                 print(f"[ERROR] Request failed: {e}")

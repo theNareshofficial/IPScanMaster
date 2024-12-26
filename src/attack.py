@@ -36,18 +36,16 @@ class Attacking:
 
             print(f"\n{BRIGHT_MAGENTA}[+]---------- HTTPX-Toolkit ----------[+]{RESET}{BRIGHT_GREEN}\n")
             subprocess.run(f"sudo httpx-toolkit -l {self.output_path}/subdomains.txt -o {self.output_path}/https.txt", shell=True, check=True)
+            subprocess.run(f"wc -l {self.output_path}/https.txt", shell=True, check=True)
 
             print(f"\n{BRIGHT_MAGENTA}[+]---------- WAFW00F Check ----------[+]{RESET}{BRIGHT_GREEN}\n")
             subprocess.run(f"sudo wafw00f -i {self.output_path}/https.txt -o {self.output_path}/waf.txt", shell=True, check=True)
 
             print(f"\n{BRIGHT_MAGENTA}[+]---------- Wayback Check ----------[+]{RESET}{BRIGHT_GREEN}\n")
-            wayback_instance = Wayback(
-                url=self.IP, output_path=f"{self.output_path}/wayback.json"
-            )
+            wayback_instance = Wayback(url=self.IP, output_path=f"{self.output_path}/wayback.json")
             wayback_instance.getData()
 
             print(f"\n{BRIGHT_MAGENTA}[+]---------- Directory Search ----------[+]{RESET}{BRIGHT_GREEN}\n")
-            # Use dirsearch tool to look for directories
             subprocess.run(f"sudo dirsearch -u {self.IP} -w injection/dirb_common.txt -o {self.output_path}/dirsearch.txt", shell=True, check=True)
 
             print(f"\n{BRIGHT_MAGENTA}[+]---------- NMAP Whois-Domain ----------[+]{RESET}{BRIGHT_GREEN}\n")

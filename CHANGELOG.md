@@ -1,6 +1,21 @@
 ## CHANGELOG
 
 
+* v2.09
+* v2.09 - updated injection/pswd/name.txt (pswd updated)
+* v2.09 - updated injection/payload/xss.txt (XSS payload updated)
+* v2.09 - updated injection/payload/XSS-payloadbox.txt (XSS payload updated)
+* v2.09 - updated injection/dirb/dirsearch.txt (dirb updated)
+* v2.09 - updated injection/dirb/dirb_small.txt (dirb updated)
+* v2.09 - updated injection/dirb/dirb_common.txt (dirb updated)
+* v2.09 - updated tool/core.config (v2.09)
+* v2.09 - updated injection/ (dirb updated)
+* v2.09 - updated src/dir.py (dirb updated)
+* v2.09 - updated src/attack.py (dirb updated)
+* v2.09 - updated libs/import.py (src/xss.py updated)
+* v2.09 - updated src/wayback.py (Theme Updated)
+* v2.09 - updated src/xss.py (XSS Attack)
+* v2.09 - updated main.py (-x XSS Attack)
 * v2.08
 * v2.08 - Upgraded libs/import.py (Updated src.wayback)
 * v2.08 - Upgraded tools/core/config.py (version v2.08)

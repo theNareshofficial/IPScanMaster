@@ -28,7 +28,7 @@ echo """
           |  Github  : https://github.com/theNareshofficial
           |  Youtube : https://www.youtube.com/@nareshtechweb930    
 
-                            IPScanMaster : v2.08
+                            IPScanMaster : v2.09
     ...A Tool for Gathering Detailed Information about IPs and Domains...
 """
 
@@ -53,7 +53,7 @@ check_root() {
 }
 
 check_inet() {
-    if ping -c 1 8.8.8.8 &>/dev/null; then
+    if curl -s https://google.com >/dev/null; then
         echo "[+]---------->> Internet Connection Successful"
         return 0
     else
@@ -61,6 +61,7 @@ check_inet() {
         return 1
     fi
 }
+
 
 check_python() {
     if command_exists python3; then
@@ -149,6 +150,7 @@ if check_root && check_inet; then
     check_nmap
     check_subfinder
     check_httpx
+    clone_photon
     install_requirements
     exit 0
 else

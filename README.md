@@ -131,6 +131,11 @@ $ sudo python main.py -m scan -f example.com
 $ sudo python main.py -m scan -w example.com
 ```
 
+### XSS Attack
+```bash
+$ sudo python main.py -m scan -x example.com
+```
+
 ### DirSearch
 ```bash
 $ sudo python main.py -m scan -d example.com

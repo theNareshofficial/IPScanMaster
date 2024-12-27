@@ -16,7 +16,7 @@ class Attacking:
         # Timestamp for unique output folder names
         self.timestamp = datetime.datetime.now().strftime("%d%B%Y_%H%M%S")
         self.output_path = f"output/{self.IP}_{self.timestamp}"
-
+ 
     def create_output_dir(self):
         # Create the output directory if it does not exist
         os.makedirs(self.output_path, exist_ok=True)
@@ -46,7 +46,7 @@ class Attacking:
             wayback_instance.getData()
 
             print(f"\n{BRIGHT_MAGENTA}[+]---------- Directory Search ----------[+]{RESET}{BRIGHT_GREEN}\n")
-            subprocess.run(f"sudo dirsearch -u {self.IP} -w injection/dirb_common.txt -o {self.output_path}/dirsearch.txt", shell=True, check=True)
+            subprocess.run(f"sudo dirsearch -u {self.IP} -w injection/dirb/dirb_common.txt -o {self.output_path}/dirsearch.txt", shell=True, check=True)
 
             print(f"\n{BRIGHT_MAGENTA}[+]---------- NMAP Whois-Domain ----------[+]{RESET}{BRIGHT_GREEN}\n")
             subprocess.run(f"sudo nmap --script whois-domain.nse {self.IP} -oN {self.output_path}/whois_Domain.txt", shell=True)
@@ -64,9 +64,9 @@ class Attacking:
                 print(f"{BRIGHT_MAGENTA}[+]{BRIGHT_CYAN} Saved: {self.output_path}/{filename}")
 
         except subprocess.CalledProcessError as e:
-            print(f"{BRIGHT_MAGENTA}[+]{BRIGHT_RED} Error executing command: {e}")
+            print(f"{BRIGHT_MAGENTA}[❌]{BRIGHT_RED} Error executing command: {e}")
         except Exception as e:
-            print(f"{BRIGHT_MAGENTA}[+]{BRIGHT_RED} An unexpected error occurred: {e}")
+            print(f"{BRIGHT_MAGENTA}[❌]{BRIGHT_RED} An unexpected error occurred: {e}")
 
 
 if __name__ == "__main__":

@@ -25,6 +25,9 @@ def connection(uIP):
             print(f"\n{BRIGHT_MAGENTA}[+]---------- Checking Open Ports ----------[+]{BRIGHT_GREEN}\n")
             scan_ports(ip=uIP)
 
+            print(f"\n{BRIGHT_MAGENTA}[+]---------- Checking WhatWeb Tool ----------[+]{BRIGHT_GREEN}\n")
+            WhatWeb.ScanWeb(self=WhatWeb, url=uIP)
+
             print(f"\n{BRIGHT_MAGENTA}[+]---------- Dirsearch ----------[+]{BRIGHT_GREEN}\n")
             DirSearch.search(self=DirSearch, ip=uIP)
     
@@ -64,7 +67,9 @@ class Main:
         parser.add_argument("-d", type=str, metavar="DirSearch", help="Small Directory Search")
         parser.add_argument("-f", type=str, metavar="WAF check", help="Web Application Firewall check")
         parser.add_argument("-w", type=str, metavar="Wayback", help="Wayback Machine")
+        parser.add_argument("-ww", type=str, metavar="What Web", help="Next generation web scanner")
         parser.add_argument("-x", type=str, metavar="XSS", help="XSS Attack Payload")
+        parser.add_argument("-b", type=str, metavar="Banner", help="IPScanmaster Banner")
         parser.add_argument("-i", type=str, metavar="IP INFO", help="Get IP Information")
         parser.add_argument("-v", "--version", action="version", version=config.version, help="IPScanMaster")
 
@@ -110,6 +115,14 @@ class Main:
                     vulb = XSSAttack(url=args.x)
                     vulb.attack()
 
+                elif args.ww:
+                    print(f"{BRIGHT_BLUE}[DEBUG] Using WhatWeb Machine{RESET}")
+                    WhatWeb.ScanWeb(self=WhatWeb, url=args.ww)
+
+                elif args.b:
+                    clrscr()
+                    Info().banner()
+
                 elif args.r:
                     print(f"{BRIGHT_BLUE}[DEBUG] Performing reverse IP lookup{RESET}")
                     reverseIP(ip=args.r)
@@ -121,7 +134,7 @@ class Main:
                     return None, args.i
                 
                 else:            
-                    print(f"{BRIGHT_RED}[ERROR] No valid arguments provided for scan mode{RESET}")
+                    print(f"{BRIGHT_RED}[ERROR] No valid arguments provided for scan mode, PATH={__file__}{RESET}")
                     parser.print_help()
                     exit(1)
     
@@ -133,7 +146,7 @@ class Main:
                     exit(0)
 
                 else:
-                    print(f"{BRIGHT_RED}[ERROR] IP or DNS is required for attack mode{RESET}")
+                    print(f"{BRIGHT_RED}[ERROR] Try with (sudo) command, PATH={__file__}{RESET}")
                     exit(1)
 
             else:

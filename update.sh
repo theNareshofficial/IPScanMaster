@@ -35,6 +35,8 @@ update() {
             sudo apt install --only-upgrade httpx-toolkit
             echo "[+]----->> Updating Python3..."
             sudo apt install --only-upgrade python3
+            echo "[+]----->> Updating whatweb..."
+            sudo apt install --only-upgrade whatweb
             echo "[+]----->> Update Completed..."
 }
 

@@ -1,6 +1,14 @@
 ## CHANGELOG
 
 
+* v3.00
+* v3.00 - Updated tools/core/config.py (version v3.0)
+* v3.00 - Updated libs/imports.py (updated src.whatWEB.py)
+* v3.00 - Updated src/attack.py (bug fix)
+* v3.00 - Updated src/whatWEB.py (Next generation web scanner)
+* v3.00 - Updated main.py (-w whatweb)
+* v3.00 - Updated updated.sh (whatweb)
+* v3.00 - Updated setup.sh (Check_whatweb)
 * v2.09
 * v2.09 - updated injection/pswd/name.txt (pswd updated)
 * v2.09 - updated injection/payload/xss.txt (XSS payload updated)

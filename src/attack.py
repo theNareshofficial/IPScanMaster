@@ -11,7 +11,7 @@ from src.wayback import *
 class Attacking:
     def __init__(self, IP=None):
         if not IP:
-            raise ValueError(f"{BRIGHT_RED}IP address or domain is required.{RESET}")
+            raise ValueError(f"{BRIGHT_RED}IP address or domain is required {RESET}")
         self.IP = IP
         # Timestamp for unique output folder names
         self.timestamp = datetime.datetime.now().strftime("%d%B%Y_%H%M%S")
@@ -64,9 +64,9 @@ class Attacking:
                 print(f"{BRIGHT_MAGENTA}[+]{BRIGHT_CYAN} Saved: {self.output_path}/{filename}")
 
         except subprocess.CalledProcessError as e:
-            print(f"{BRIGHT_MAGENTA}[❌]{BRIGHT_RED} Error executing command: {e}")
+            print(f"{BRIGHT_MAGENTA}[❌]{BRIGHT_RED} Error executing command: {e}, PATH={__file__}")
         except Exception as e:
-            print(f"{BRIGHT_MAGENTA}[❌]{BRIGHT_RED} An unexpected error occurred: {e}")
+            print(f"{BRIGHT_MAGENTA}[❌]{BRIGHT_RED} An unexpected error occurred: {e}, PATH={__file__}")
 
 
 if __name__ == "__main__":
@@ -75,8 +75,8 @@ if __name__ == "__main__":
         attacker = Attacking(IP=ip_address)
         attacker.run_commands()
     except ValueError as ve:
-        print(ve)
+        print(f"{ve}, PATH={__file__}")
     except KeyboardInterrupt:
-        print(f"\n{BRIGHT_RED}Execution interrupted by user.{RESET}")
+        pass
     except Exception as e:
-        print(f"\n{BRIGHT_RED}Unexpected Error: {e}{RESET}")
+        print(f"\n{BRIGHT_RED}Unexpected Error: {e}, PATH={__file__}{RESET}")

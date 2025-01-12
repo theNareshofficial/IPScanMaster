@@ -23,6 +23,7 @@ It's important to note that the use of such tools should be conducted ethically 
 - Sub-Domains
 - IPINFO.io API Integration
 - WHOIS Command Info
+- What Web
 
 ### Attack
 - Port Scanning
@@ -51,6 +52,9 @@ It's important to note that the use of such tools should be conducted ethically 
 
 ## Wayback
 - The Wayback Machine is an online archive that captures snapshots of websites over time, allowing users to view the historical versions of web pages as they appeared on specific dates.
+
+## What Web
+- Next generation web scanner
 
 ## SubDomain Lister
 - This function identifies and lists all subdomains associated with the given domain. This can help in uncovering additional points of entry or services running under the main domain.
@@ -131,6 +135,11 @@ $ sudo python main.py -m scan -f example.com
 $ sudo python main.py -m scan -w example.com
 ```
 
+### WhatWeb
+```bash
+$ sudo python main.py -m scan -ww whatweb
+```
+
 ### XSS Attack
 ```bash
 $ sudo python main.py -m scan -x example.com
@@ -144,6 +153,11 @@ $ sudo python main.py -m scan -d example.com
 ### IP Information
 ```bash
 $ sudo python main.py -m scan -i example.com
+```
+
+### IP Information
+```bash
+$ sudo python main.py -m scan -b banner
 ```
 
 ### Show version

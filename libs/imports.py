@@ -13,6 +13,7 @@ try:
                   from src.dir import *
                   from src.wayback import *
                   from src.xss import *
+                  from src.whatWEB import *
                   from tools.clrscr import *
                   from tools.inet import *
                   from tools.banner import *
@@ -21,7 +22,7 @@ try:
                   from tools.time_zone import *
 
 except ModuleNotFoundError as Module_error:
-        print(f" [!] Module_error : {Module_error}, path={__file__} ")
+        print(f"{BG_RED} [!] Module_error : {Module_error}, path={__file__} ")
         exit()
 except Exception as import_error:
-        print(f" [!] {import_error}, path={__file__}")
+        print(f"{BG_RED} [!] {import_error}, path={__file__}")

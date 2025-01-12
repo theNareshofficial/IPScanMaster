@@ -28,7 +28,7 @@ echo """
           |  Github  : https://github.com/theNareshofficial
           |  Youtube : https://www.youtube.com/@nareshtechweb930    
 
-                            IPScanMaster : v2.09
+                            IPScanMaster : v3.0
     ...A Tool for Gathering Detailed Information about IPs and Domains...
 """
 
@@ -136,6 +136,18 @@ check_nmap() {
 
 }
 
+check_whatweb() {
+    if command_exists whatweb; then
+        echo "[+]---------->> whatweb Found"
+    else
+        echo "[+]---------->> whatweb Not Found"
+        echo "[~]---------->> whatweb Installting..."
+        sudo apt install whatweb -y &>/dev/null
+        echo "[+]whatweb Installation Completed"
+    fi
+
+}
+
 install_requirements() {
     echo "[+]---------->> Installing Python requirements"
     pip install -r requirements.txt &>/dev/null
@@ -150,6 +162,7 @@ if check_root && check_inet; then
     check_nmap
     check_subfinder
     check_httpx
+    check_whatweb
     clone_photon
     install_requirements
     exit 0

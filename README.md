@@ -2,7 +2,7 @@
             <img src="assets/image.png" width="700px">
 </p>
 
-<h1 align="center">IPScan Master ~ v2.02</h1>
+<h1 align="center">IPScan Master ~ v3.0</h1>
 
 **IPScanMaster** appears to be a network analysis tool with two main functionalities: Scan and Attack. 
 

@@ -3,6 +3,7 @@
 
 * v3.00
 * v3.00 - Updated tools/core/config.py (version v3.0)
+* v3.00 - Updated README.md (README.md)
 * v3.00 - Updated libs/imports.py (updated src.whatWEB.py)
 * v3.00 - Updated src/attack.py (bug fix)
 * v3.00 - Updated src/whatWEB.py (Next generation web scanner)

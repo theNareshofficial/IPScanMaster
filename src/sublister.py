@@ -4,7 +4,6 @@ from tools.color import *
 import subprocess
 
 def enumerate_subdomain(domain):
-    # print(f"{BRIGHT_YELLOW}[*] Enumerating subdomains for: {domain} using Subfinder...")
     try:
         command = ["subfinder", "-d", domain, "-silent"]
 

@@ -8,7 +8,8 @@ try:
                   from src.reverse import *
                   from src.ports import *
                   from src.IPchg import *
-                  from src.sublister import *
+                #   from src.sublister import *
+                  from src.PassiveDomainHunter import *
                   from src.attack import *
                   from src.dir import *
                   from src.wayback import *

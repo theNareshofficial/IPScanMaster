@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import argparse
+import subprocess
 from libs import *
 
 def connection(uIP):
@@ -20,7 +21,7 @@ def connection(uIP):
             check_waf(ip=uIP)
     
             print(f"\n{BRIGHT_MAGENTA}[+]---------- Checking Sub-Domains ----------[+]{BRIGHT_GREEN}\n")
-            enumerate_subdomain(domain=uIP)
+            subprocess.run(f"sudo subfinder -d {uIP}", shell=True, check=True)
     
             print(f"\n{BRIGHT_MAGENTA}[+]---------- Checking Open Ports ----------[+]{BRIGHT_GREEN}\n")
             scan_ports(ip=uIP)
@@ -88,7 +89,7 @@ class Main:
 
                 elif args.s:
                     print(f"{BRIGHT_BLUE}[DEBUG] Enumerating subdomains{RESET}")
-                    enumerate_subdomain(domain=args.s)
+                    sanitize_domain(domain=args.s)
                     return None, args.s
                 
                 elif args.p:

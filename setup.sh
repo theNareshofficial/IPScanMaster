@@ -28,7 +28,7 @@ echo """
           |  Github  : https://github.com/theNareshofficial
           |  Youtube : https://www.youtube.com/@nareshtechweb930    
 
-                            IPScanMaster : v3.0
+                            IPScanMaster : v4.0
     ...A Tool for Gathering Detailed Information about IPs and Domains...
 """
 
@@ -130,7 +130,7 @@ check_nmap() {
     else
         echo "[+]---------->> NMAP Not Found"
         echo "[~]---------->> NMAP Installting..."
-        sudo apt install NMAP -y &>/dev/null
+        sudo apt install nmap -y &>/dev/null
         echo "[+]NMAP Installation Completed"
     fi
 
@@ -150,7 +150,7 @@ check_whatweb() {
 
 install_requirements() {
     echo "[+]---------->> Installing Python requirements"
-    pip install -r requirements.txt &>/dev/null
+    python3 -m pip install -r requirements.txt
     echo "[+] Python requirements installation completed."
 }
 
@@ -163,7 +163,6 @@ if check_root && check_inet; then
     check_subfinder
     check_httpx
     check_whatweb
-    clone_photon
     install_requirements
     exit 0
 else

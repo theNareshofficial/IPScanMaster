@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-version      = "IPScanMaster : v3.0"
+version      = "IPScanMaster : v4.0"
 short_name   = "IPScanMaster🔍"
 description  = "...A Tool for Gathering Detaild Information about IPs and Domains..."
 Author       = "Author  : Naresh"

@@ -39,5 +39,5 @@ class Info:
 {RESET}"""
         print(__banner__)
 
-# Call the class method to print the banner
-Info.banner()
+if __name__ == "__main__":
+    Info.banner()

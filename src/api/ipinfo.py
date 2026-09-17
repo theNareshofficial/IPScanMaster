@@ -1,11 +1,17 @@
 #!/usr/bin/env python3
 
-import requests
+try:
+    import requests
+except ImportError:
+    requests = None
 from tools.color import *
 
 def get_ip_location(ip):
+    if requests is None:
+        print(" [+] requests is not installed. Install requirements.txt to use IP information.")
+        return None
     try:
-        response = requests.get(f'https://ipinfo.io/{ip}/json')
+        response = requests.get(f'https://ipinfo.io/{ip}/json', timeout=15)
         response.raise_for_status()
         data = response.json()
         return data

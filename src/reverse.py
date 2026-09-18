@@ -36,13 +36,13 @@ def validate_dns(dns_name):
         return False
     
 def validate_ip_dns(ip):
-    
     if validate_ip(ip):
         return True
-    elif validate_dns(ip):
-        return False
-    else:
-        print(f"{BRIGHT_MAGENTA}[+]{BRIGHT_RED} Invalid IP Address!!!")
+    if validate_dns(ip):
+        return True
+
+    print(f"{BRIGHT_MAGENTA}[+]{BRIGHT_RED} Invalid IP address or domain name: {ip}{RESET}")
+    return False
     
 def reverseIP(ip):
 

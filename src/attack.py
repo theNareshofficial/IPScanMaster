@@ -3,6 +3,8 @@
 import subprocess
 import datetime
 import os
+import re
+import shutil
 from tools.color import *
 from src.ports import *
 from src.reverse import *
@@ -15,11 +17,24 @@ class Attacking:
         self.IP = IP
         # Timestamp for unique output folder names
         self.timestamp = datetime.datetime.now().strftime("%d%B%Y_%H%M%S")
-        self.output_path = f"output/{self.IP}_{self.timestamp}"
+        safe_target = re.sub(r"[^A-Za-z0-9.-]", "_", IP)
+        self.output_path = os.path.join("output", f"{safe_target}_{self.timestamp}")
  
     def create_output_dir(self):
-        # Create the output directory if it does not exist
         os.makedirs(self.output_path, exist_ok=True)
+
+    @staticmethod
+    def run_tool(command):
+
+        if not shutil.which(command[0]):
+            print(f"{BRIGHT_RED}{command[0]} is not installed or not on PATH; skipping this step.{RESET}")
+            return False
+        try:
+            subprocess.run(command, check=True)
+            return True
+        except subprocess.CalledProcessError as error:
+            print(f"{BRIGHT_RED}Command failed: {error}{RESET}")
+            return False
 
     def run_commands(self):
         try:
@@ -32,30 +47,34 @@ class Attacking:
             scan_ports(ip=self.IP)
 
             print(f"\n{BRIGHT_MAGENTA}[+]---------- SubDomain Enumeration ----------[+]{RESET}{BRIGHT_GREEN}\n")
-            subprocess.run(f"sudo subfinder -d {self.IP} -o {self.output_path}/subdomains.txt", shell=True, check=True)
+            subdomains_path = os.path.join(self.output_path, "subdomains.txt")
+            self.run_tool(["subfinder", "-d", self.IP, "-o", subdomains_path])
 
             print(f"\n{BRIGHT_MAGENTA}[+]---------- HTTPX-Toolkit ----------[+]{RESET}{BRIGHT_GREEN}\n")
-            subprocess.run(f"sudo httpx-toolkit -l {self.output_path}/subdomains.txt -o {self.output_path}/https.txt", shell=True, check=True)
-            subprocess.run(f"wc -l {self.output_path}/https.txt", shell=True, check=True)
+            https_path = os.path.join(self.output_path, "https.txt")
+            if os.path.exists(subdomains_path):
+                self.run_tool(["httpx-toolkit", "-l", subdomains_path, "-o", https_path])
 
             print(f"\n{BRIGHT_MAGENTA}[+]---------- WAFW00F Check ----------[+]{RESET}{BRIGHT_GREEN}\n")
-            subprocess.run(f"sudo wafw00f -i {self.output_path}/https.txt -o {self.output_path}/waf.txt", shell=True, check=True)
+            if os.path.exists(https_path):
+                self.run_tool(["wafw00f", "-i", https_path, "-o", os.path.join(self.output_path, "waf.txt")])
 
             print(f"\n{BRIGHT_MAGENTA}[+]---------- Wayback Check ----------[+]{RESET}{BRIGHT_GREEN}\n")
             wayback_instance = Wayback(url=self.IP, output_path=f"{self.output_path}/wayback.json")
             wayback_instance.getData()
 
             print(f"\n{BRIGHT_MAGENTA}[+]---------- Directory Search ----------[+]{RESET}{BRIGHT_GREEN}\n")
-            subprocess.run(f"sudo dirsearch -u {self.IP} -w injection/dirb/dirb_common.txt -o {self.output_path}/dirsearch.txt", shell=True, check=True)
+            target = self.IP if "://" in self.IP else f"https://{self.IP}"
+            self.run_tool(["dirsearch", "-u", target, "-w", "injection/dirb/dirb_common.txt", "-o", os.path.join(self.output_path, "dirsearch.txt")])
 
             print(f"\n{BRIGHT_MAGENTA}[+]---------- NMAP Whois-Domain ----------[+]{RESET}{BRIGHT_GREEN}\n")
-            subprocess.run(f"sudo nmap --script whois-domain.nse {self.IP} -oN {self.output_path}/whois_Domain.txt", shell=True)
+            self.run_tool(["nmap", "--script", "whois-domain.nse", self.IP, "-oN", os.path.join(self.output_path, "whois_Domain.txt")])
 
             print(f"\n{BRIGHT_MAGENTA}[+]---------- NMAP Whois-IP ----------[+]{RESET}{BRIGHT_GREEN}\n")
-            subprocess.run(f"sudo nmap {self.IP} --script whois-ip -o {self.output_path}/whois_IP.txt", shell=True, check=True)
+            self.run_tool(["nmap", self.IP, "--script", "whois-ip", "-oN", os.path.join(self.output_path, "whois_IP.txt")])
 
             print(f"\n{BRIGHT_MAGENTA}[+]---------- NMAP Vulners ----------[+]{RESET}{BRIGHT_GREEN}\n")
-            subprocess.run(f"sudo nmap -sV --script vulners {self.IP} -oN {self.output_path}/Vulners.txt", shell=True, check=True)
+            self.run_tool(["nmap", "-sV", "--script", "vulners", self.IP, "-oN", os.path.join(self.output_path, "Vulners.txt")])
 
             print(f"\n{BRIGHT_MAGENTA}[+]---------- Completed ----------[+]{RESET}{BRIGHT_GREEN}\n")
 

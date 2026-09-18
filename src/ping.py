@@ -32,7 +32,7 @@ def ip_Reachable(ip):
                                         exit()
                                                 
             except Exception as ping_error:
-                    print(f"{BRIGHT_MAGENTA} [!] {BRIGHT_RED}{ping_error}, path={__path__}")
+                    print(f"{BRIGHT_MAGENTA} [!] {BRIGHT_RED}{ping_error}, path={__file__}")
             except KeyboardInterrupt:
                     pass
             

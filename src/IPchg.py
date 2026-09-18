@@ -3,12 +3,10 @@
 import socket
 
 def ip_chg(ip):
-
-            try:
-                    ipv4 = socket.gethostbyname(ip)
-                    return ipv4
-            except:
-                    pass
+    try:
+        return socket.gethostbyname(ip)
+    except socket.gaierror:
+        return ip
 
 if __name__ == "__main__":
         ip_chg()

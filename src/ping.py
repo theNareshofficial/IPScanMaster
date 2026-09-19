@@ -23,9 +23,9 @@ def ip_Reachable(ip):
                                     print(f"{BRIGHT_MAGENTA} [!] {BRIGHT_RED}{ip} is not Reachable!!!")                                
 
                                     choice = input(f"{BRIGHT_MAGENTA} [~] {BRIGHT_CYAN}You want continue (y/n) : ")
-                                    if choice == "y":
+                                    if choice == "y" or "Y":
                                             pass
-                                    elif choice == "n":
+                                    elif choice == "n" or "N":
                                             exit(1)
                                     else:
                                         print(f"{BRIGHT_MAGENTA} [!] {BRIGHT_RED}'{choice}' Invalid!!!")

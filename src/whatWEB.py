@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import shutil
 import subprocess
 from tools.color import *
 
@@ -12,9 +13,13 @@ class WhatWeb:
                         print("[!] URL is EMPTY !!!")
                         return
 
-                    CMD = ['sudo', 'whatweb', self.url]
+                    if not shutil.which("whatweb"):
+                        print(f"{BRIGHT_MAGENTA}[!]{BRIGHT_RED} whatweb is not installed or not on PATH.{RESET}")
+                        return 1
 
-                    result = subprocess.run(CMD, stdin=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                    CMD = ['whatweb', self.url]
+
+                    result = subprocess.run(CMD, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 
                     if result.returncode == 0:
                         #print("Scan Successfully")
@@ -23,4 +28,5 @@ class WhatWeb:
                         # print("Scan Failed")    
                         print(f"{BRIGHT_MAGENTA}[!]{BRIGHT_RED} {result.stderr}")
                     else:
-                        exit
+                        print(f"{BRIGHT_MAGENTA}[!]{BRIGHT_RED} whatweb returned {result.returncode}.{RESET}")
+                    return result.returncode

@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 
-import requests
+try:
+    import requests
+except ImportError:
+    requests = None
 from tools.color import *
 
 class XSSAttack:
@@ -18,6 +21,9 @@ class XSSAttack:
 
     def attack(self):
         """Perform the XSS attack."""
+        if requests is None:
+            print(f"{BRIGHT_RED}[ERROR] requests is not installed. Install requirements.txt first.")
+            return
         if not self.url:
             print(f"{BRIGHT_RED}[ERROR] No URL provided. Exiting.")
             return
@@ -34,8 +40,8 @@ class XSSAttack:
             params = {"q": payload}
 
             try:
-                response = requests.get(self.url, params=params)
-                print(f"RESPONSE : {response.json}")
+                response = requests.get(self.url, params=params, timeout=15)
+                print(f"RESPONSE : {response.status_code}")
 
                 if payload in response.text:
                     print(response)

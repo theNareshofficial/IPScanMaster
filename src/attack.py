@@ -10,6 +10,12 @@ from src.ports import *
 from src.reverse import *
 from src.wayback import *
 
+def print_section(title, icon="⚡"):
+    """Prints a sleek, uniform UTF-8 section header matching the framework style."""
+    print(f"\n{BRIGHT_CYAN}╭─────────────────────────────────────────────────────────╮{RESET}")
+    print(f"{BRIGHT_CYAN}│{RESET} {BRIGHT_GREEN}{icon} {title:<51}{RESET} {BRIGHT_CYAN}│{RESET}")
+    print(f"{BRIGHT_CYAN}╰─────────────────────────────────────────────────────────╯{RESET}\n")
+
 class Attacking:
     def __init__(self, IP=None):
         if not IP:
@@ -25,62 +31,61 @@ class Attacking:
 
     @staticmethod
     def run_tool(command):
-
         if not shutil.which(command[0]):
-            print(f"{BRIGHT_RED}{command[0]} is not installed or not on PATH; skipping this step.{RESET}")
+            print(f"{BRIGHT_RED}✖ {command[0]} is not installed or not on PATH; skipping this step.{RESET}")
             return False
         try:
             subprocess.run(command, check=True)
             return True
         except subprocess.CalledProcessError as error:
-            print(f"{BRIGHT_RED}Command failed: {error}{RESET}")
+            print(f"{BRIGHT_RED}✖ Command failed: {error}{RESET}")
             return False
 
     def run_commands(self):
         try:
             self.create_output_dir()
 
-            print(f"\n{BRIGHT_MAGENTA}[+]---------- Checking Your Original IP ----------[+]{RESET}{BRIGHT_GREEN}\n")
+            print_section("Checking Your Original IP", icon="🔍")
             reverseIP(ip=self.IP)
 
-            print(f"\n{BRIGHT_MAGENTA}[+]---------- Open Port Scan ----------[+]{RESET}{BRIGHT_GREEN}\n")
+            print_section("Open Port Scan", icon="🔌")
             scan_ports(ip=self.IP)
 
-            print(f"\n{BRIGHT_MAGENTA}[+]---------- SubDomain Enumeration ----------[+]{RESET}{BRIGHT_GREEN}\n")
+            print_section("SubDomain Enumeration", icon="📂")
             subdomains_path = os.path.join(self.output_path, "subdomains.txt")
             self.run_tool(["subfinder", "-d", self.IP, "-o", subdomains_path])
 
-            print(f"\n{BRIGHT_MAGENTA}[+]---------- HTTPX-Toolkit ----------[+]{RESET}{BRIGHT_GREEN}\n")
+            print_section("HTTPX-Toolkit", icon="🌐")
             https_path = os.path.join(self.output_path, "https.txt")
             if os.path.exists(subdomains_path):
                 self.run_tool(["httpx-toolkit", "-l", subdomains_path, "-o", https_path])
 
-            print(f"\n{BRIGHT_MAGENTA}[+]---------- WAFW00F Check ----------[+]{RESET}{BRIGHT_GREEN}\n")
+            print_section("WAFW00F Check", icon="🛡️")
             if os.path.exists(https_path):
                 self.run_tool(["wafw00f", "-i", https_path, "-o", os.path.join(self.output_path, "waf.txt")])
 
-            print(f"\n{BRIGHT_MAGENTA}[+]---------- Wayback Check ----------[+]{RESET}{BRIGHT_GREEN}\n")
+            print_section("Wayback Check", icon="⏳")
             wayback_instance = Wayback(url=self.IP, output_path=f"{self.output_path}/wayback.json")
             wayback_instance.getData()
 
-            print(f"\n{BRIGHT_MAGENTA}[+]---------- Directory Search ----------[+]{RESET}{BRIGHT_GREEN}\n")
+            print_section("Directory Search", icon="📁")
             target = self.IP if "://" in self.IP else f"https://{self.IP}"
             self.run_tool(["dirsearch", "-u", target, "-w", "injection/dirb/dirb_common.txt", "-o", os.path.join(self.output_path, "dirsearch.txt")])
 
-            print(f"\n{BRIGHT_MAGENTA}[+]---------- NMAP Whois-Domain ----------[+]{RESET}{BRIGHT_GREEN}\n")
+            print_section("NMAP Whois-Domain", icon="📋")
             self.run_tool(["nmap", "--script", "whois-domain.nse", self.IP, "-oN", os.path.join(self.output_path, "whois_Domain.txt")])
 
-            print(f"\n{BRIGHT_MAGENTA}[+]---------- NMAP Whois-IP ----------[+]{RESET}{BRIGHT_GREEN}\n")
+            print_section("NMAP Whois-IP", icon="🌍")
             self.run_tool(["nmap", self.IP, "--script", "whois-ip", "-oN", os.path.join(self.output_path, "whois_IP.txt")])
 
-            print(f"\n{BRIGHT_MAGENTA}[+]---------- NMAP Vulners ----------[+]{RESET}{BRIGHT_GREEN}\n")
+            print_section("NMAP Vulners", icon="⚡")
             self.run_tool(["nmap", "-sV", "--script", "vulners", self.IP, "-oN", os.path.join(self.output_path, "Vulners.txt")])
 
-            print(f"\n{BRIGHT_MAGENTA}[+]---------- Completed ----------[+]{RESET}{BRIGHT_GREEN}\n")
+            print(f"\n{BRIGHT_GREEN}✨ [+]---------- Completed ----------[+]{RESET}\n")
 
-            # Display saved files
+            # Display saved files with clean icons
             for filename in os.listdir(self.output_path):
-                print(f"{BRIGHT_MAGENTA}[+]{BRIGHT_CYAN} Saved: {self.output_path}/{filename}")
+                print(f"{BRIGHT_MAGENTA}[💾]{BRIGHT_CYAN} Saved: {self.output_path}/{filename}")
 
         except subprocess.CalledProcessError as e:
             print(f"{BRIGHT_MAGENTA}[❌]{BRIGHT_RED} Error executing command: {e}, PATH={__file__}")

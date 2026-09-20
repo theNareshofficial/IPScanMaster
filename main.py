@@ -1,8 +1,15 @@
+#!/usr/init/env python3
 #!/usr/bin/env python3
 
 import argparse
+import shutil
 import subprocess
 from libs import *
+
+def print_section(title, icon="⚡"):
+    print(f"\n{BRIGHT_CYAN}╭─────────────────────────────────────────────────────────╮{RESET}")
+    print(f"{BRIGHT_CYAN}│{RESET} {BRIGHT_GREEN}{icon} {title:<51}{RESET} {BRIGHT_CYAN}│{RESET}")
+    print(f"{BRIGHT_CYAN}╰─────────────────────────────────────────────────────────╯{RESET}\n")
 
 def connection(uIP):
     try:
@@ -11,45 +18,49 @@ def connection(uIP):
         if inet_conn() == 0:
             print(f"{BRIGHT_BLUE}[DEBUG] Internet connection verified{RESET}")
 
-            print(f"\n{BRIGHT_MAGENTA}[+]---------- Checking Your Original IP ----------[+]{RESET}{BRIGHT_GREEN}\n")
+            print_section("Checking Your Original IP", icon="🔍")
             reverseIP(ip=uIP)
     
-            print(f"\n{BRIGHT_MAGENTA}[+]---------- Checking Your IP Reachable ----------[+]{BRIGHT_GREEN}\n")
+            print_section("Checking Your IP Reachable", icon="📡")
             ip_Reachable(ip=uIP)
 
-            print(f"\n{BRIGHT_MAGENTA}[+]---------- Checking WAF(Web Application Firewall) ----------[+]{BRIGHT_GREEN}\n")
+            print_section("Checking WAF (Web Application Firewall)", icon="🛡️")
             check_waf(ip=uIP)
     
-            print(f"\n{BRIGHT_MAGENTA}[+]---------- Checking Sub-Domains ----------[+]{BRIGHT_GREEN}\n")
-            subprocess.run(f"sudo subfinder -d {uIP}", shell=True, check=True)
+            print_section("Checking Sub-Domains", icon="📂")
+            if shutil.which("subfinder"):
+                subprocess.run(["subfinder", "-d", uIP], check=True)
+            else:
+                print(f"{BRIGHT_RED}✖ subfinder is not installed or not on PATH; skipping subdomain enumeration.{RESET}")
     
-            print(f"\n{BRIGHT_MAGENTA}[+]---------- Checking Open Ports ----------[+]{BRIGHT_GREEN}\n")
+            print_section("Checking Open Ports", icon="🔌")
             scan_ports(ip=uIP)
 
-            print(f"\n{BRIGHT_MAGENTA}[+]---------- Checking WhatWeb Tool ----------[+]{BRIGHT_GREEN}\n")
+            print_section("Checking WhatWeb Tool", icon="🌐")
             WhatWeb.ScanWeb(self=WhatWeb, url=uIP)
 
-            print(f"\n{BRIGHT_MAGENTA}[+]---------- Dirsearch ----------[+]{BRIGHT_GREEN}\n")
+            print_section("Dirsearch", icon="📁")
             DirSearch.search(self=DirSearch, ip=uIP)
     
             print(f"{BRIGHT_BLUE}[DEBUG] Modifying IP if necessary{RESET}")
             uIP = ip_chg(ip=uIP)
-            print(f"IP CHANGE : {uIP}")
+            print(f"{BRIGHT_GREEN}✔ IP CHANGE :{RESET} {uIP}")
     
-            print(f"\n{BRIGHT_MAGENTA}[+]---------- IP Information ----------[+]{BRIGHT_GREEN}")
+            print_section("IP Information", icon="ℹ️")
             ipinfo(ip=uIP)
     
-            print(f"\n{BRIGHT_MAGENTA}[+]---------- IP WHOIS ----------[+]{BRIGHT_GREEN}\n")
+            print_section("IP WHOIS", icon="📋")
             check_whois(ip=uIP)
 
-            print(f"\n{BRIGHT_MAGENTA}[+]---------- Completed ----------[+]{BRIGHT_GREEN}\n")
+            print(f"\n{BRIGHT_GREEN}✨ [+]---------- Completed ----------[+]{RESET}\n")
 
     except KeyboardInterrupt:
-        print(f"{RED}Operation canceled by user.{RESET}")
+        print(f"\n{RED}✖ Operation canceled by user.{RESET}")
         exit(0)
 
     except Exception as conn_error:
-        print(f"{RED}Conn_Error : {conn_error}, Path ={__file__}{RESET}")
+        print(f"{RED}✖ Conn_Error : {conn_error}, Path ={__file__}{RESET}")
+
 class Main:
     @classmethod
     def args_main(cls):
@@ -61,7 +72,7 @@ class Main:
         )
 
         parser.add_argument("-u", type=str, metavar="url", help="Enter IPv4 or DNS name")
-        parser.add_argument("-m", type=str, metavar="Mode", required=True, choices=["attack", "scan"], help="Select the Mode for Attack or Scan")
+        parser.add_argument("-m", type=str, metavar="Mode", choices=["attack", "scan"], help="Select the Mode for Attack or Scan")
         parser.add_argument("-r", type=str, metavar="Real Address", help="Reverse Real IPv4 or Domain name")
         parser.add_argument("-s", type=str, metavar="Subdomains", help="Print all SubDomains")
         parser.add_argument("-p", type=str, metavar="Ports", help="Print all Open Ports")
@@ -79,7 +90,6 @@ class Main:
         try:
             print(f"{BRIGHT_BLUE}[DEBUG] Initializing variables for argument processing{RESET}")
             uIP = None
-
     
             if args.m == "scan":
                 print(f"{BRIGHT_BLUE}[DEBUG] Scan mode selected{RESET}")
@@ -89,7 +99,7 @@ class Main:
 
                 elif args.s:
                     print(f"{BRIGHT_BLUE}[DEBUG] Enumerating subdomains{RESET}")
-                    sanitize_domain(domain=args.s)
+                    enumerate_subdomain(domain=args.s)
                     return None, args.s
                 
                 elif args.p:
@@ -100,6 +110,7 @@ class Main:
                 elif args.d:
                     print(f"{BRIGHT_BLUE}[DEBUG] Performing directory search{RESET}")
                     DirSearch.search(self=DirSearch, ip=args.d)
+                    return None, args.d
 
                 elif args.f:
                     print(f"{BRIGHT_BLUE}[DEBUG] Checking WAF{RESET}")
@@ -110,19 +121,23 @@ class Main:
                     print(f"{BRIGHT_BLUE}[DEBUG] Using Wayback Machine{RESET}")
                     wayback = Wayback(url=args.w)
                     wayback.getData()
+                    return None, args.w
 
                 elif args.x:
                     print(f"{BRIGHT_BLUE}[DEBUG] Using XSS-Attack Machine{RESET}")
                     vulb = XSSAttack(url=args.x)
                     vulb.attack()
+                    return None, args.x
 
                 elif args.ww:
                     print(f"{BRIGHT_BLUE}[DEBUG] Using WhatWeb Machine{RESET}")
                     WhatWeb.ScanWeb(self=WhatWeb, url=args.ww)
+                    return None, args.ww
 
                 elif args.b:
                     clrscr()
                     Info().banner()
+                    return None, args.b
 
                 elif args.r:
                     print(f"{BRIGHT_BLUE}[DEBUG] Performing reverse IP lookup{RESET}")
@@ -141,7 +156,9 @@ class Main:
     
             elif args.m == "attack":
                 if args.u:
-                    uIP = args.u
+                    uIP = args.u.replace("https://", "").replace("http://", "").rstrip("/")
+                    if not validate_ip_dns(uIP):
+                        parser.error("-u must be a valid IPv4 address or resolvable DNS name")
                     attacker = Attacking(IP=uIP)
                     attacker.run_commands()
                     exit(0)
@@ -151,9 +168,7 @@ class Main:
                     exit(1)
 
             else:
-                print(f"{BRIGHT_RED}[ERROR] Invalid mode provided{RESET}")
-                parser.print_help()
-                exit(1)
+                parser.error("-m is required unless using -h or --version")
 
             if uIP:
                 uIP = uIP.replace("https://", "").replace("http://", "").rstrip("/")
@@ -168,6 +183,7 @@ class Main:
             exit(1)
             
 if __name__ == "__main__":
+    Info.banner()
     TimeZone.start_time()
     uIP = None
 
@@ -175,11 +191,14 @@ if __name__ == "__main__":
         uIP, _ = Main.args_main()
 
         if uIP:
-            validate_ip_dns(uIP)
-            connection(uIP)
+            if validate_ip_dns(uIP):
+                connection(uIP)
+            else:
+                uIP = None
+                raise ValueError("Target must be a valid IPv4 address or resolvable DNS name")
 
     except KeyboardInterrupt:
-       pass
+        pass
 
     except Exception as e:
         print(f"{BRIGHT_RED}[ERROR] Error: {e}{RESET}")
